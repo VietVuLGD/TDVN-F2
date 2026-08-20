@@ -1,0 +1,330 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * TD VIỆT NAM design system.
+ *
+ * BRAND TOKEN ENGINE
+ * Every colour on the site is derived from three scalars:
+ *   --brand-h  (hue)        --brand-c  (chroma)     --brand-l (base lightness)
+ * Change those three (e.g. from an uploaded logo) and the whole site
+ * re-themes: primary, secondary, accent, surfaces, borders, gradients, glass.
+ * Never hardcode a colour in a component.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 6px);
+  --radius-md: calc(var(--radius) - 3px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 6px);
+  --radius-2xl: calc(var(--radius) + 12px);
+  --radius-3xl: calc(var(--radius) + 20px);
+  --radius-4xl: calc(var(--radius) + 32px);
+
+  --font-display: "Sora", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-foreground: var(--surface-foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-soft: var(--primary-soft);
+  --color-primary-hover: var(--primary-hover);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ink: var(--ink);
+  --color-ink-foreground: var(--ink-foreground);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  --radius: 1rem;
+
+  /* ---- brand scalars: TD VIET NAM Official Green Accent ---- */
+  --brand-h: 152;
+  --brand-c: 0.155;
+  --brand-l: 0.46;
+  --brand-h2: calc(var(--brand-h) + 28);
+  --brand-h3: calc(var(--brand-h) - 36);
+  --neutral-c: 0.005;
+
+  /* ---- derived surfaces: WHITE CORPORATE / ENGINEERING PREMIUM ---- */
+  --background: #ffffff;
+  --foreground: #111827;
+  --surface: #fafafa;
+  --surface-foreground: #111827;
+  --card: #ffffff;
+  --card-foreground: #111827;
+  --popover: #ffffff;
+  --popover-foreground: #111827;
+
+  /* ---- derived brand roles ---- */
+  --primary: oklch(var(--brand-l) var(--brand-c) var(--brand-h));
+  --primary-foreground: #ffffff;
+  --primary-hover: oklch(calc(var(--brand-l) - 0.07) var(--brand-c) var(--brand-h));
+  --primary-soft: #eaf7ef;
+  --secondary: #374151;
+  --secondary-foreground: #ffffff;
+  --accent: oklch(calc(var(--brand-l) + 0.12) calc(var(--brand-c) * 1.05) var(--brand-h2));
+  --accent-foreground: #111827;
+
+  --muted: #f3f4f6;
+  --muted-foreground: #4b5563;
+
+  --ink: #0f172a;
+  --ink-foreground: #ffffff;
+
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+
+  --border: #e5e7eb;
+  --border-strong: #d1d5db;
+  --input: #e5e7eb;
+  --ring: oklch(var(--brand-l) var(--brand-c) var(--brand-h));
+
+  --chart-1: var(--primary);
+  --chart-2: #0284c7;
+  --chart-3: #10b981;
+  --chart-4: #f59e0b;
+  --chart-5: #6366f1;
+
+  --sidebar: #ffffff;
+  --sidebar-foreground: #111827;
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #eaf7ef;
+  --sidebar-accent-foreground: #111827;
+  --sidebar-border: #e5e7eb;
+  --sidebar-ring: var(--ring);
+
+  /* ---- gradients / elevation ---- */
+  --gradient-brand: linear-gradient(
+    135deg,
+    oklch(var(--brand-l) var(--brand-c) var(--brand-h)) 0%,
+    oklch(calc(var(--brand-l) + 0.08) calc(var(--brand-c) * 1.05) var(--brand-h2)) 100%
+  );
+  --gradient-ink: linear-gradient(160deg, #0f172a 0%, #1e293b 100%);
+  --gradient-veil: radial-gradient(120% 90% at 80% -10%, transparent 0%, transparent 100%);
+  --shadow-soft: 0 1px 3px 0 rgb(0 0 0 / 0.05), 0 1px 2px -1px rgb(0 0 0 / 0.05);
+  --shadow-lift: 0 10px 25px -5px rgb(0 0 0 / 0.08), 0 8px 10px -6px rgb(0 0 0 / 0.04);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dark {
+  --background: oklch(0.16 calc(var(--neutral-c) * 2) var(--brand-h));
+  --foreground: oklch(0.97 0.006 var(--brand-h));
+  --surface: oklch(0.2 calc(var(--neutral-c) * 2.2) var(--brand-h));
+  --card: oklch(0.215 calc(var(--neutral-c) * 2.4) var(--brand-h));
+  --card-foreground: var(--foreground);
+  --popover: oklch(0.215 calc(var(--neutral-c) * 2.4) var(--brand-h));
+  --popover-foreground: var(--foreground);
+  --primary: oklch(calc(var(--brand-l) + 0.14) var(--brand-c) var(--brand-h));
+  --primary-foreground: oklch(0.16 0.02 var(--brand-h));
+  --primary-hover: oklch(calc(var(--brand-l) + 0.22) var(--brand-c) var(--brand-h));
+  --primary-soft: oklch(0.28 calc(var(--brand-c) * 0.35) var(--brand-h));
+  --muted: oklch(0.24 calc(var(--neutral-c) * 2.4) var(--brand-h));
+  --muted-foreground: oklch(0.72 calc(var(--neutral-c) * 3) var(--brand-h));
+  --ink: oklch(0.22 calc(var(--neutral-c) * 2.4) var(--brand-h));
+  --ink-foreground: oklch(0.97 0.006 var(--brand-h));
+  --border: oklch(1 0 0 / 12%);
+  --border-strong: oklch(1 0 0 / 22%);
+  --input: oklch(1 0 0 / 15%);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv01";
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    font-family: var(--font-display);
+    letter-spacing: -0.03em;
+    text-wrap: balance;
+  }
+
+  ::selection {
+    background: var(--primary);
+    color: var(--primary-foreground);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+}
+
+@utility container-page {
+  width: 100%;
+  margin-inline: auto;
+  max-width: 84rem;
+  padding-inline: 1.25rem;
+  @media (min-width: 768px) {
+    padding-inline: 2rem;
+  }
+}
+
+@utility surface-glass {
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(16px) saturate(160%);
+  border: 1px solid var(--border);
+}
+
+@utility card-premium {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-soft);
+  transition:
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.25s ease;
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lift);
+    border-color: color-mix(in srgb, var(--primary) 40%, var(--border));
+  }
+}
+
+@utility btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  background-color: var(--primary);
+  padding: 0.75rem 1.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--primary-foreground);
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  transition:
+    background-color 0.2s,
+    opacity 0.2s,
+    transform 0.2s;
+  &:hover {
+    background-color: var(--primary-hover);
+    opacity: 0.96;
+  }
+}
+
+@utility btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  border: 1px solid var(--border);
+  background-color: #ffffff;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--foreground);
+  transition:
+    border-color 0.2s,
+    color 0.2s,
+    background-color 0.2s;
+  &:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+  }
+}
+
+@utility text-gradient-brand {
+  background: var(--gradient-brand);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+@utility bg-gradient-brand {
+  background-image: var(--gradient-brand);
+}
+
+@utility bg-gradient-ink {
+  background-image: var(--gradient-ink);
+}
+
+@utility bg-veil {
+  background-image: var(--gradient-veil);
+}
+
+@utility eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primary);
+}
+
+@utility grid-lines {
+  background-image:
+    linear-gradient(to right, var(--border) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--border) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(80% 60% at 50% 40%, black, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

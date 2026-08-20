@@ -1,0 +1,8 @@
+{
+  "name": "Remix TDVN-wed",
+  "description": "Imported from GitHub: VietVuLGD/TDVN-wed",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
