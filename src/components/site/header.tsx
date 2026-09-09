@@ -46,13 +46,11 @@ const MAIN_NAV_DATA: NavItem[] = [
         ],
       },
       {
-        title: "Giải Pháp Kỹ Thuật Chuyên Sâu",
+        title: "Giải pháp kĩ thuật",
         items: [
-          { title: "Điện mặt trời Tự dùng", href: "/solutions" },
-          { title: "Điện mặt trời Bám tải (Zero Export)", href: "/solutions" },
-          { title: "Hybrid & Lưu trữ năng lượng (ESS)", href: "/solutions" },
-          { title: "Điện mặt trời Độc lập (Off-grid)", href: "/solutions" },
-          { title: "Hệ thống điện & Phân phối", href: "/solutions" },
+          { title: "Điện mặt trời bám tải On Grid", href: "/solutions#technical-solutions" },
+          { title: "Hybrid & Lưu trữ năng lượng", href: "/solutions#technical-solutions" },
+          { title: "Điện mặt trời độc lập", href: "/solutions#technical-solutions" },
         ],
       },
     ],
@@ -121,8 +119,7 @@ const MAIN_NAV_DATA: NavItem[] = [
         title: "Chuyên Đề Kỹ Thuật",
         items: [
           { title: "Kiến thức kĩ thuật", href: "/knowledge" },
-          { title: "Hướng dẫn vận hành", href: "/knowledge" },
-          { title: "Hướng dẫn lắp đặt", href: "/knowledge" },
+          { title: "Hướng dẫn Lắp đặt & Vận hành", href: "/knowledge" },
           { title: "Phân tích công nghệ", href: "/knowledge" },
         ],
       },
@@ -216,7 +213,7 @@ const FEATURED_SEARCH_ITEMS = [
   // Cột 3: Dịch vụ & Tài liệu kỹ thuật
   { title: "Tổng thầu EPC trọn gói", href: "/services" },
   { title: "Hồ sơ năng lực TD VIỆT NAM", href: "/downloads" },
-  { title: "Hướng dẫn vận hành & Lắp đặt", href: "/knowledge" },
+  { title: "Hướng dẫn Lắp đặt & Vận hành", href: "/knowledge" },
 ];
 
 const QUICK_CATEGORIES = [

@@ -32,7 +32,7 @@ export const Route = createFileRoute("/about")({
 });
 
 /* =========================================================================
-   DỮ LIỆU CÁC NHÓM KỸ SƯ & CHUYÊN NGÀNH (BECHTEL TABBED DISCIPLINES)
+   DỮ LIỆU CÁC NHÓM KỸ SƯ & CHUYÊN NGÀNH (ĐÃ BỎ THẺ PIN BESS THEO YÊU CẦU)
 ========================================================================= */
 const DISCIPLINE_TABS = [
   {
@@ -45,37 +45,31 @@ const DISCIPLINE_TABS = [
     items: [
       {
         title: "Mô Phỏng PVsyst & Bóng Che 3D",
-        category: "Simulation & Modeling",
+        category: "MÔ PHỎNG & TÍNH TOÁN 3D",
         image:
           "https://images.unsplash.com/photo-1498084393753-b411b2d26b34?w=800&auto=format&fit=crop&q=80",
       },
       {
         title: "Hồ Sơ Bản Vẽ Thi Công IFC",
-        category: "Electrical CAD & SLD",
+        category: "THIẾT KẾ ĐIỆN CAD & SLD",
         image:
           "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=800&auto=format&fit=crop&q=80",
       },
       {
-        title: "Hệ Thống Lưu Trữ Pin BESS",
-        category: "Battery Energy Storage",
-        image:
-          "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&auto=format&fit=crop&q=80",
-      },
-      {
         title: "Thẩm Tra Đấu Nối Lưới EVN",
-        category: "Grid Code & Protection",
+        category: "ĐẤU NỐI LƯỚI & BẢO VỆ",
         image:
           "https://images.unsplash.com/photo-1581092335397-9583fe92d232?w=800&auto=format&fit=crop&q=80",
       },
       {
         title: "Giải Pháp Zero-Export & Rơ-le",
-        category: "Power Control & Automation",
+        category: "ĐIỀU KHIỂN & TỰ ĐỘNG HÓA",
         image:
           "https://images.unsplash.com/photo-1508873696983-2df5293cb32f?w=800&auto=format&fit=crop&q=80",
       },
       {
         title: "Tối Ưu Hóa Dòng Tiền LCOE",
-        category: "Financial Engineering",
+        category: "TỐI ƯU TÀI CHÍNH & LCOE",
         image:
           "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop&q=80",
       },
@@ -86,44 +80,26 @@ const DISCIPLINE_TABS = [
     tabName: "KHỐI THI CÔNG EPC HIỆN TRƯỜNG",
     title: "Khối Quản Lý Dự Án & Thi Công Hiện Trường",
     description:
-      "Chỉ huy trưởng và kỹ sư giám sát trực tiếp quản trị chất lượng lắp đặt cơ điện, khung giàn nhôm Anodized, kéo rải cáp ngầm và đảm bảo 100% an toàn lao động chuẩn HSE quốc tế.",
+      "Chỉ huy trưởng và kỹ sư giám sát trực tiếp quản trị chất lượng lắp đặt cơ điện, khung giàn nhôm Anodized, kéo rải cáp ngầm và đảm bảo 100% an toàn lao động chuẩn HSE.",
     ctaText: "Xem Quy Trình Thi Công",
     items: [
       {
         title: "Thi Công Cơ Điện Áp Mái",
-        category: "Rooftop Mechanical & Civil",
+        category: "KẾT CẤU & KHUNG GIÀN",
         image:
           "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&auto=format&fit=crop&q=80",
       },
       {
-        title: "Lắp Đặt Trạm Biến Áp & Tủ RMU",
-        category: "Substation & Switchgear",
-        image:
-          "https://images.unsplash.com/photo-1544725176-7c40e5a71c5e?w=800&auto=format&fit=crop&q=80",
-      },
-      {
-        title: "Kiểm Soát An Toàn HSE Mái Xưởng",
-        category: "Zero-Harm Safety Policy",
-        image:
-          "https://images.unsplash.com/photo-1541888946425-d0fbb18086f6?w=800&auto=format&fit=crop&q=80",
-      },
-      {
         title: "Thử Nghiệm & Đóng Điện Hòa Lưới",
-        category: "Commissioning & Energization",
+        category: "THỬ NGHIỆM & ĐÓNG ĐIỆN",
         image:
           "https://images.unsplash.com/photo-1509391365360-2e959784a276?w=800&auto=format&fit=crop&q=80",
       },
       {
         title: "Bảo Trì O&M & Quét Drone Nhiệt",
-        category: "Drone Thermography & SCADA",
+        category: "QUÉT NHIỆT & GIÁM SÁT SCADA",
         image:
           "https://images.unsplash.com/photo-1527977966376-1c8408f9f108?w=800&auto=format&fit=crop&q=80",
-      },
-      {
-        title: "Nghiệm Thu Đo Kiểm Megger & I-V",
-        category: "Quality Assurance Testing",
-        image:
-          "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=800&auto=format&fit=crop&q=80",
       },
     ],
   },
@@ -137,19 +113,19 @@ const DISCIPLINE_TABS = [
     items: [
       {
         title: "Đào Tạo Chuyên Sâu PVsyst & BESS",
-        category: "Technical Mentorship",
+        category: "ĐÀO TẠO KỸ SƯ HỆ THỐNG",
         image:
           "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&auto=format&fit=crop&q=80",
       },
       {
         title: "Thực Chiến Tại Các Công Trường FDI",
-        category: "Field Experience Program",
+        category: "THỰC CHIẾN CÔNG TRƯỜNG FDI",
         image:
           "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800&auto=format&fit=crop&q=80",
       },
       {
         title: "Nghiên Cứu Điều Khiển Ảo (VSG / Grid-Forming)",
-        category: "Advanced Power Systems R&D",
+        category: "NGHIÊN CỨU LƯỚI MICROGRID",
         image:
           "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&q=80",
       },
@@ -158,7 +134,7 @@ const DISCIPLINE_TABS = [
 ];
 
 /* =========================================================================
-   DỮ LIỆU KHỐI "LIFE AT TD VIỆT NAM" (BECHTEL STYLE)
+   DỮ LIỆU KHỐI "VĂN HÓA KỸ THUẬT & ĐÃI NGỘ"
 ========================================================================= */
 const LIFE_AT_TD = [
   {
@@ -169,7 +145,7 @@ const LIFE_AT_TD = [
   },
   {
     title: "Văn Hóa An Toàn Tuyệt Đối (HSE)",
-    desc: "Cam kết Zero-Harm: 100% trang bị bảo hộ đạt chuẩn, lưới cứu sinh toàn thân khi làm việc trên cao.",
+    desc: "Cam kết không tai nạn: 100% trang bị bảo hộ đạt chuẩn, lưới cứu sinh toàn thân khi làm việc trên cao.",
     image:
       "https://images.unsplash.com/photo-1541888946425-d0fbb18086f6?w=800&auto=format&fit=crop&q=80",
   },
@@ -188,7 +164,7 @@ const LIFE_AT_TD = [
 ];
 
 /* =========================================================================
-   DỮ LIỆU TESTIMONIALS (HEAR FROM OUR PEOPLE)
+   DỮ LIỆU GÓC NHÌN KỸ SƯ THỰC CHIẾN
 ========================================================================= */
 const TESTIMONIALS = [
   {
@@ -223,11 +199,11 @@ export function AboutPage() {
   const currentTestimonial = TESTIMONIALS[activeTestimonial];
 
   return (
-    <div className="w-full bg-white text-neutral-900 font-sans">
+    <div className="w-full bg-white text-neutral-900 font-sans antialiased selection:bg-[#008A4B] selection:text-white">
       {/* ============================================================= */}
-      {/* 1. HERO BANNER: PHONG CÁCH BECHTEL CAREERS / CORPORATE       */}
+      {/* 1. HERO BANNER DOANH NGHIỆP                                   */}
       {/* ============================================================= */}
-      <section className="relative w-full bg-[#050e18] text-white py-20 lg:py-28 overflow-hidden">
+      <section className="relative w-full bg-[#0B0F19] text-white py-20 lg:py-28 overflow-hidden">
         {/* Nền ảnh kỹ thuật công nghiệp */}
         <div className="absolute inset-0 z-0">
           <img
@@ -235,18 +211,18 @@ export function AboutPage() {
             alt="Hạ tầng công nghiệp TD VIỆT NAM"
             className="w-full h-full object-cover opacity-25"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#050e18] via-[#050e18]/85 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#050e18] via-transparent to-[#050e18]/60" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0B0F19] via-[#0B0F19]/85 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F19] via-transparent to-[#0B0F19]/60" />
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl space-y-6">
-            <div className="text-xs font-mono font-bold text-[#F15A24] uppercase tracking-wider">
-              ABOUT TD VIỆT NAM
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#F15A24]/10 border-l-2 border-[#F15A24] text-[#F15A24] text-xs font-bold uppercase tracking-wider">
+              <span>VỀ TD VIỆT NAM</span>
             </div>
 
             <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black uppercase text-white leading-tight tracking-tight">
-              Building Tomorrow, Together.
+              KIẾN TẠO TƯƠNG LAI NĂNG LƯỢNG BỀN VỮNG.
             </h1>
 
             <p className="text-base sm:text-lg text-neutral-300 leading-relaxed font-normal">
@@ -273,39 +249,27 @@ export function AboutPage() {
         </div>
       </section>
 
-      {/* BREADCRUMB & DOT MATRIX BAR */}
-      <div
-        className="w-full bg-white border-b border-neutral-200 py-3.5"
-        style={{
-          backgroundImage: "radial-gradient(#d1d5db 1px, transparent 1px)",
-          backgroundSize: "24px 24px",
-        }}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center gap-2 text-xs font-mono font-bold text-neutral-400">
+      {/* BREADCRUMB */}
+      <div className="w-full bg-[#F8FAFC] border-b border-neutral-200 py-3.5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center gap-2 text-xs font-semibold text-neutral-500">
           <a href="/" className="hover:text-neutral-900 transition-colors">
-            HOME
+            Trang chủ
           </a>
-          <span>&gt;</span>
-          <span className="text-[#F15A24]">GIỚI THIỆU DOANH NGHIỆP</span>
+          <span>/</span>
+          <span className="text-[#F15A24]">Giới thiệu doanh nghiệp</span>
         </div>
       </div>
 
       {/* ============================================================= */}
-      {/* 2. WHY TD VIỆT NAM? (GIỮ NGUYÊN BỐ CỤC ẢNH & NỘI DUNG ĐÃ GỬI)   */}
+      {/* 2. VÌ SAO CHỌN TD VIỆT NAM                                    */}
       {/* ============================================================= */}
-      <section
-        className="w-full py-16 sm:py-24 bg-white border-b border-neutral-200"
-        style={{
-          backgroundImage: "radial-gradient(#e5e7eb 1px, transparent 1px)",
-          backgroundSize: "32px 32px",
-        }}
-      >
+      <section className="w-full py-16 sm:py-24 bg-white border-b border-neutral-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-            {/* CỘT TRÁI: BỘ MOSAIC ẢNH KỸ SƯ & HIỆN TRƯỜNG ĐÃ NẠP ĐỦ ẢNH */}
+            {/* CỘT TRÁI: BỘ MOSAIC ẢNH KỸ SƯ & HIỆN TRƯỜNG */}
             <div className="lg:col-span-6 grid grid-cols-2 gap-4 relative">
               <div className="space-y-4">
-                {/* Ảnh 1: Kỹ sư phòng Lab */}
+                {/* Ảnh 1: Kỹ sư thiết kế */}
                 <div className="aspect-[4/5] bg-neutral-100 overflow-hidden border border-neutral-200 shadow-sm">
                   <img
                     src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=800&auto=format&fit=crop&q=80"
@@ -344,7 +308,7 @@ export function AboutPage() {
 
               {/* Tag xanh "100% Tinh Gọn" ở góc dưới */}
               <div className="absolute -bottom-4 left-4 bg-[#008A4B] text-white p-4 shadow-xl border border-white/20 max-w-xs z-10">
-                <div className="text-xl font-black font-mono">100% Tinh Gọn</div>
+                <div className="text-xl font-black">100% Tinh Gọn</div>
                 <div className="text-[11px] text-white/90 leading-tight mt-0.5">
                   Tập trung kỹ thuật chuyên sâu, loại bỏ chi phí trung gian không cần thiết.
                 </div>
@@ -354,7 +318,7 @@ export function AboutPage() {
             {/* CỘT PHẢI: NỘI DUNG VÌ SAO CHỌN CHÚNG TÔI */}
             <div className="lg:col-span-6 space-y-6">
               <div className="space-y-2">
-                <span className="text-xs font-mono font-bold text-[#008A4B] uppercase tracking-wider">
+                <span className="text-xs font-bold text-[#008A4B] uppercase tracking-wider">
                   VÌ SAO CHỌN CHÚNG TÔI?
                 </span>
                 <h2 className="text-2xl sm:text-4xl font-black uppercase text-neutral-900 tracking-tight leading-tight">
@@ -416,27 +380,29 @@ export function AboutPage() {
       </section>
 
       {/* ============================================================= */}
-      {/* 3. DISCIPLINE TRACKS (BECHTEL SIDEBAR TABS & IMAGE CARDS)      */}
+      {/* 3. LĨNH VỰC HOẠT ĐỘNG & NĂNG LỰC TRIỂN KHAI                   */}
       {/* ============================================================= */}
       <section
         id="disciplines"
-        className="w-full py-16 sm:py-24 bg-white border-b border-neutral-200"
+        className="w-full py-16 sm:py-24 bg-[#F8FAFC] border-b border-neutral-200"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
           <div className="border-b border-neutral-200 pb-6 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
             <div>
-              <span className="text-xs font-mono font-bold text-[#F15A24] uppercase tracking-wider">
-                CORE DISCIPLINES &amp; WORK TRACKS
+              <span className="text-xs font-bold text-[#F15A24] uppercase tracking-wider">
+                NĂNG LỰC THỰC THI
               </span>
               <h2 className="text-2xl sm:text-4xl font-black uppercase text-neutral-900 tracking-tight mt-1">
                 LĨNH VỰC HOẠT ĐỘNG &amp; NĂNG LỰC TRIỂN KHAI
               </h2>
             </div>
-            <div className="text-xs text-neutral-500 font-mono">TIÊU CHUẨN KỸ THUẬT QUỐC TẾ</div>
+            <div className="text-xs text-neutral-500 font-semibold uppercase">
+              TIÊU CHUẨN KỸ THUẬT QUỐC TẾ
+            </div>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-            {/* SIDEBAR TABS BÊN TRÁI (PHONG CÁCH BECHTEL PILL TABS) */}
+            {/* SIDEBAR TABS BÊN TRÁI */}
             <div className="lg:col-span-4 space-y-2 sticky top-28">
               {DISCIPLINE_TABS.map((tab, idx) => {
                 const isActive = activeTab === idx;
@@ -448,7 +414,7 @@ export function AboutPage() {
                     className={`w-full text-left px-5 py-3.5 text-xs font-bold uppercase tracking-wider transition-all rounded-full flex items-center justify-between cursor-pointer ${
                       isActive
                         ? "bg-[#F15A24] text-white shadow-md"
-                        : "text-neutral-600 hover:text-neutral-950 hover:bg-neutral-100"
+                        : "bg-white text-neutral-700 hover:text-neutral-950 hover:bg-neutral-100 border border-neutral-200"
                     }`}
                   >
                     <span>{tab.tabName}</span>
@@ -458,7 +424,7 @@ export function AboutPage() {
               })}
 
               <div className="pt-6 border-t border-neutral-200 mt-6 space-y-3">
-                <div className="text-xs text-neutral-500 leading-relaxed">
+                <div className="text-xs text-neutral-500 leading-relaxed font-normal">
                   Cần tìm hiểu chi tiết về tài liệu kỹ thuật hoặc báo cáo mô phỏng mẫu?
                 </div>
                 <a
@@ -471,7 +437,7 @@ export function AboutPage() {
               </div>
             </div>
 
-            {/* NỘI DUNG & GRID THẺ ẢNH BÊN PHẢI */}
+            {/* NỘI DUNG & GRID THẺ ẢNH BÊN PHẢI (ĐÃ BỎ THẺ PIN BESS) */}
             <div className="lg:col-span-8 space-y-8 animate-in fade-in duration-300">
               <div className="space-y-3">
                 <h3 className="text-2xl sm:text-3xl font-black text-neutral-900 uppercase">
@@ -494,7 +460,7 @@ export function AboutPage() {
                 </div>
               </div>
 
-              {/* LƯỚI THẺ ẢNH (JOBS BY DEPARTMENT / CAPABILITY CARDS) */}
+              {/* LƯỚI THẺ ẢNH */}
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 pt-4">
                 {currentTab.items.map((item, iIdx) => (
                   <div
@@ -514,7 +480,7 @@ export function AboutPage() {
                     </div>
 
                     <div className="p-4 space-y-1">
-                      <div className="text-[10px] font-mono font-bold text-neutral-400 uppercase">
+                      <div className="text-[10px] font-bold text-neutral-400 uppercase">
                         {item.category}
                       </div>
                       <h4 className="text-xs sm:text-sm font-bold text-neutral-900 group-hover:text-[#008A4B] transition-colors leading-snug">
@@ -530,14 +496,14 @@ export function AboutPage() {
       </section>
 
       {/* ============================================================= */}
-      {/* 4. LIFE AT TD VIỆT NAM (VĂN HÓA KỸ THUẬT & GIÁ TRỊ DOANH NGHIỆP) */}
+      {/* 4. VĂN HÓA KỸ THUẬT & ĐÃI NGỘ                                 */}
       {/* ============================================================= */}
-      <section className="w-full py-16 sm:py-24 bg-neutral-50/70 border-b border-neutral-200">
+      <section className="w-full py-16 sm:py-24 bg-white border-b border-neutral-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end border-b border-neutral-200 pb-6">
             <div className="lg:col-span-5 space-y-1">
-              <span className="text-xs font-mono font-bold text-[#008A4B] uppercase tracking-wider">
-                CULTURE &amp; ENVIRONMENT
+              <span className="text-xs font-bold text-[#008A4B] uppercase tracking-wider">
+                VĂN HÓA &amp; MÔI TRƯỜNG KỸ THUẬT
               </span>
               <h2 className="text-2xl sm:text-4xl font-black uppercase text-neutral-900 tracking-tight">
                 VĂN HÓA KỸ THUẬT &amp; ĐÃI NGỘ
@@ -551,7 +517,7 @@ export function AboutPage() {
             </div>
           </div>
 
-          {/* LƯỚI 4 THẺ ẢNH TỐI CÓ NÚT DẤU CỘNG ĐỎ/CAM TRÒN */}
+          {/* LƯỚI 4 THẺ ẢNH */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {LIFE_AT_TD.map((card, cIdx) => (
               <div
@@ -567,8 +533,8 @@ export function AboutPage() {
 
                 <div className="absolute inset-0 p-6 flex flex-col justify-between text-white">
                   <div>
-                    <span className="text-[10px] font-mono font-bold text-[#10B981] uppercase tracking-wider">
-                      PILLAR 0{cIdx + 1}
+                    <span className="text-[10px] font-bold text-[#10B981] uppercase tracking-wider">
+                      TRỤ CỘT 0{cIdx + 1}
                     </span>
                   </div>
 
@@ -594,20 +560,20 @@ export function AboutPage() {
       </section>
 
       {/* ============================================================= */}
-      {/* 5. HEAR FROM OUR PEOPLE (GÓC NHÌN KỸ SƯ TRƯỞNG & LÃNH ĐẠO)    */}
+      {/* 5. GÓC NHÌN KỸ SƯ THỰC CHIẾN                                  */}
       {/* ============================================================= */}
-      <section className="w-full py-16 sm:py-24 bg-white border-b border-neutral-200">
+      <section className="w-full py-16 sm:py-24 bg-[#F8FAFC] border-b border-neutral-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
           <div className="text-center max-w-3xl mx-auto space-y-2">
-            <span className="text-xs font-mono font-bold text-[#F15A24] uppercase tracking-wider">
-              VOICES OF ENGINEERS
+            <span className="text-xs font-bold text-[#F15A24] uppercase tracking-wider">
+              GÓC NHÌN KỸ SƯ THỰC CHIẾN
             </span>
             <h2 className="text-2xl sm:text-4xl font-black uppercase text-neutral-900 tracking-tight">
               GÓC NHÌN KỸ SƯ THỰC CHIẾN
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center bg-neutral-50/60 p-8 sm:p-12 border border-neutral-200">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center bg-white p-8 sm:p-12 border border-neutral-200 shadow-xs">
             {/* CỘT TRÁI: QUOTE & PROFILE */}
             <div className="lg:col-span-7 space-y-6">
               <div className="text-5xl font-serif text-[#F15A24] leading-none">“</div>
@@ -628,10 +594,12 @@ export function AboutPage() {
                   <div className="text-sm font-bold text-neutral-900">
                     {currentTestimonial.name}
                   </div>
-                  <div className="text-xs font-mono font-semibold text-[#008A4B]">
+                  <div className="text-xs font-semibold text-[#008A4B]">
                     {currentTestimonial.role}
                   </div>
-                  <div className="text-[11px] text-neutral-500">{currentTestimonial.company}</div>
+                  <div className="text-[11px] text-neutral-500 font-medium">
+                    {currentTestimonial.company}
+                  </div>
                 </div>
               </div>
 
@@ -652,7 +620,7 @@ export function AboutPage() {
               </div>
             </div>
 
-            {/* CỘT PHẢI: ẢNH HIỆN TRƯỜNG KỸ SƯ ĐANG THỰC HIỆN DỰ ÁN */}
+            {/* CỘT PHẢI: ẢNH HIỆN TRƯỜNG KỸ SƯ */}
             <div className="lg:col-span-5">
               <div className="aspect-[4/3] bg-neutral-900 overflow-hidden border border-neutral-200 shadow-xl">
                 <img
@@ -667,13 +635,13 @@ export function AboutPage() {
       </section>
 
       {/* ============================================================= */}
-      {/* 6. CALL TO ACTION & DOWNLOADS (LIÊN HỆ & TẢI TÀI LIỆU)          */}
+      {/* 6. CALL TO ACTION (LIÊN HỆ & TẢI TÀI LIỆU)                     */}
       {/* ============================================================= */}
-      <section className="w-full py-16 sm:py-24 bg-[#050e18] text-white">
+      <section className="w-full py-16 sm:py-24 bg-[#0B0F19] text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-neutral-950 p-8 sm:p-12 lg:p-16 border border-neutral-800 flex flex-col lg:flex-row lg:items-center justify-between gap-8">
             <div className="space-y-4 max-w-2xl">
-              <div className="inline-flex items-center gap-2 text-xs font-mono font-bold text-[#10B981] uppercase tracking-wider">
+              <div className="inline-flex items-center gap-2 text-xs font-bold text-[#008A4B] uppercase tracking-wider">
                 <Zap className="w-3.5 h-3.5" />
                 <span>TIẾP NHẬN YÊU CẦU DỰ ÁN &amp; HỢP TÁC</span>
               </div>
@@ -691,7 +659,7 @@ export function AboutPage() {
                 <div className="flex items-center gap-2">
                   <Phone className="w-4 h-4 text-[#008A4B]" />
                   <span>
-                    Hotline: <strong className="text-white">0941 994 262</strong>
+                    Hotline: <strong className="text-white font-bold">0941 994 262</strong>
                   </span>
                 </div>
                 <span className="hidden sm:inline text-neutral-600">|</span>

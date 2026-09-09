@@ -1,6 +1,6 @@
-import React, { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowRight, Phone, Mail, Check, ChevronRight, Zap, FileText } from "lucide-react";
+import { useState } from "react";
 
 const title = "Giải Pháp Năng Lượng Phù Hợp Thực Tế | TD VIỆT NAM";
 const description =
@@ -23,40 +23,40 @@ export const Route = createFileRoute("/solutions")({
 });
 
 /* =========================================================================
-   1. DỮ LIỆU: PHÂN KHÚC KHÁCH HÀNG (CUSTOMER SEGMENTS)
+   1. DỮ LIỆU: PHÂN KHÚC KHÁCH HÀNG
 ========================================================================= */
 const CUSTOMER_SEGMENTS = [
   {
     number: "01",
     title: "Gia đình & Biệt thự",
-    subtitle: "Residential & Villa Energy Systems",
+    subtitle: "Hệ thống điện cho gia đình & biệt thự",
     desc: "Thiết kế tinh gọn, ưu tiên tính thẩm mỹ kiến trúc mái và an toàn điện dân dụng. Tích hợp pin lưu trữ đảm bảo nguồn điện cho các thiết bị sinh hoạt thiết yếu.",
     image:
       "https://images.unsplash.com/photo-1513694203232-719a280e022f?w=800&auto=format&fit=crop&q=80",
-    tags: ["Áp Mái Dân Dụng", "Hybrid Backup", "Thẩm Mỹ Cao"],
+    tags: ["Áp Mái Dân Dụng", "Lưu Trữ Năng Lượng", "Thẩm Mỹ Cao"],
   },
   {
     number: "02",
     title: "Nhà xưởng & Doanh nghiệp (C&I)",
-    subtitle: "Commercial & Industrial Solar Solutions",
+    subtitle: "Hệ thống điện cho nhà xưởng & doanh nghiệp",
     desc: "Giải pháp giảm chi phí tiền điện giờ cao điểm cho các nhà máy sản xuất, trung tâm logistics và tòa nhà thương mại. Tối ưu hóa chỉ số LCOE và chứng chỉ xanh.",
     image:
       "https://images.unsplash.com/photo-1509391365360-2e959784a276?w=800&auto=format&fit=crop&q=80",
-    tags: ["C&I Rooftop", "Zero-Export", "Hạ Tầng Điện Lưới"],
+    tags: ["Áp Mái Công Nghiệp", "Bám Tải Zero-Export", "Hạ Tầng Điện Lưới"],
   },
   {
     number: "03",
     title: "Trang trại & Nông nghiệp",
-    subtitle: "Agri-Solar & High-Tech Farming",
+    subtitle: "Hệ thống nông nghiệp & trang trại",
     desc: "Cung cấp nguồn điện ổn định cho hệ thống tưới tiêu, bơm nước, sấy nông sản và hệ thống bảo quản lạnh tại các khu vực canh tác nông nghiệp công nghệ cao.",
     image:
       "https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=800&auto=format&fit=crop&q=80",
-    tags: ["Nông Nghiệp Công Nghệ", "Bơm Nước Năng Lượng", "Off-grid / Hybrid"],
+    tags: ["Nông Nghiệp Công Nghệ", "Bơm Nước Năng Lượng", "Độc Lập / Hybrid"],
   },
 ];
 
 /* =========================================================================
-   2. DỮ LIỆU: 5 GIẢI PHÁP KỸ THUẬT CHUYÊN SÂU (TECHNICAL SOLUTIONS)
+   2. DỮ LIỆU: 5 GIẢI PHÁP KỸ THUẬT CHUYÊN SÂU
 ========================================================================= */
 const TECHNICAL_SOLUTIONS = [
   {
@@ -73,7 +73,7 @@ const TECHNICAL_SOLUTIONS = [
     ],
     image:
       "https://images.unsplash.com/photo-1508873696983-2df5293cb32f?w=1000&auto=format&fit=crop&q=80",
-    schematic: "PV Array → Inverter → AC Sub-panel → Factory Local Loads",
+    schematic: "Dàn Pin Mặt Trời → Biến Tần Inverter → Tủ Phân Phối AC → Phụ Tải Tiêu Thụ",
   },
   {
     id: "zero-export",
@@ -83,13 +83,13 @@ const TECHNICAL_SOLUTIONS = [
     shortDesc:
       "Hệ thống đo lường và điều khiển giúp kiểm soát công suất phát của inverter theo nhu cầu tiêu thụ thực tế của công trình, đảm bảo không phát ngược sản lượng dư thừa lên lưới điện EVN.",
     features: [
-      "Cảm biến dòng điện thông minh (Smart Meter / CT Sensor) đo công suất phụ tải tức thời.",
+      "Cảm biến dòng điện thông minh (Smart Meter / CT) đo công suất phụ tải tức thời.",
       "Bộ điều khiển Inverter tự động điều chế giảm công suất phát khi phụ tải giảm xuống.",
       "Hoàn toàn tuân thủ quy định thỏa thuận kỹ thuật đấu nối nguồn tự sản tự tiêu.",
     ],
     image:
       "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=1000&auto=format&fit=crop&q=80",
-    schematic: "PV Array → Zero-Export Inverter ⟷ Smart Meter (CT) ⟷ Main Grid Breaker",
+    schematic: "Dàn Pin PV → Inverter Bám Tải ⟷ Cảm Biến Smart Meter (CT) ⟷ Aptomat Tổng Lưới Điện",
   },
   {
     id: "hybrid-ess",
@@ -105,7 +105,7 @@ const TECHNICAL_SOLUTIONS = [
     ],
     image:
       "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1000&auto=format&fit=crop&q=80",
-    schematic: "PV + Lithium ESS ⟷ Hybrid Inverter ⟷ Critical Loads & Grid Backup",
+    schematic: "Pin PV + Khối Pin Lithium ⟷ Biến Tần Hybrid ⟷ Phụ Tải Thiết Yếu & Lưới Điện",
   },
   {
     id: "off-grid",
@@ -121,7 +121,7 @@ const TECHNICAL_SOLUTIONS = [
     ],
     image:
       "https://images.unsplash.com/photo-1497440001374-f26997328c1b?w=1000&auto=format&fit=crop&q=80",
-    schematic: "PV Array → MPPT Controller ⟷ Deep-Cycle Battery ⟷ Off-Grid Inverter → Island Loads",
+    schematic: "Dàn Pin PV → Bộ Sạc MPPT ⟷ Khối Pin Lưu Trữ ⟷ Biến Tần Độc Lập → Phụ Tải",
   },
   {
     id: "electrical-distribution",
@@ -137,13 +137,13 @@ const TECHNICAL_SOLUTIONS = [
     ],
     image:
       "https://images.unsplash.com/photo-1544725176-7c40e5a71c5e?w=1000&auto=format&fit=crop&q=80",
-    schematic: "DC Combiner ⟷ Protective Switchgear ⟷ Substation & Earthing Grid (R < 10Ω)",
+    schematic: "Tủ Chuỗi DC ⟷ Tủ Phân Phối Đóng Cắt ⟷ Trạm Biến Áp & Bãi Tiếp Địa (R < 10Ω)",
   },
 ];
 
 /* =========================================================================
-   3. DỮ LIỆU: TRIẾT LÝ THIẾT KẾ (DESIGN PHILOSOPHY)
-========================================================================= */
+   3. DỮ LIỆU: TRIẾT LÝ THIẾT KẾ
+======================================================================== */
 const DESIGN_PRINCIPLES = [
   {
     number: "01",
@@ -168,7 +168,7 @@ const DESIGN_PRINCIPLES = [
 ];
 
 /* =========================================================================
-   4. DỮ LIỆU: QUY TRÌNH THỰC HIỆN 6 BƯỚC (PROCESS)
+   4. DỮ LIỆU: QUY TRÌNH THỰC HIỆN 6 BƯỚC
 ========================================================================= */
 const PROCESS_STEPS = [
   {
@@ -199,47 +199,47 @@ const PROCESS_STEPS = [
   {
     number: "06",
     title: "Bàn giao & hỗ trợ",
-    desc: "Kích hoạt giám sát SCADA Cloud 24/7 và đồng hành bảo trì O&M trọn vòng đời.",
+    desc: "Kích hoạt giám sát đám mây 24/7 và đồng hành bảo trì O&M trọn vòng đời.",
   },
 ];
 
 /* =========================================================================
-   5. DỮ LIỆU: THIẾT BỊ & CÔNG NGHỆ (HARDWARE ECOSYSTEM)
+   5. DỮ LIỆU: THIẾT BỊ & CÔNG NGHỆ
 ========================================================================= */
 const HARDWARE_CATEGORIES = [
   {
     title: "Module quang điện",
-    subtitle: "N-Type TOPCon & Bifacial",
+    subtitle: "Công nghệ N-Type TOPCon & 2 mặt kính",
     desc: "Tấm pin quang điện công nghệ tế bào N-Type hiệu suất cao, hệ số suy giảm công suất thấp và bảo hành hiệu suất 30 năm.",
   },
   {
     title: "Inverter Chuỗi (String)",
-    subtitle: "On-grid Inverters (3kW – 125kW+)",
+    subtitle: "Biến tần hòa lưới chuỗi (3kW – 125kW+)",
     desc: "Biến tần chuỗi đa MPPT, dải điện áp khởi động thấp, tích hợp chức năng giám sát thông minh từng chuỗi tấm pin.",
   },
   {
     title: "Inverter Hybrid",
-    subtitle: "Storage Inverters (5kW – 50kW)",
+    subtitle: "Biến tần lưu trữ Hybrid (5kW – 50kW)",
     desc: "Biến tần lai tích hợp cổng sạc/xả pin lưu trữ, chuyển mạch tự động ATS khi mất lưới điện trong thời gian dưới 20ms.",
   },
   {
     title: "Pin lưu trữ (Battery Storage)",
-    subtitle: "Lithium LiFePO4 Modules",
+    subtitle: "Khối pin lưu trữ Lithium LiFePO4",
     desc: "Khối pin lưu trữ Lithium Iron Phosphate an toàn chống cháy nổ, tuổi thọ trên 6.000 chu kỳ sạc/xả sâu 90% DoD.",
   },
   {
     title: "Tủ điện AC/DC",
-    subtitle: "Custom Industrial Enclosures",
+    subtitle: "Tủ điện phân phối chuẩn công nghiệp",
     desc: "Tủ điện phân phối thiết kế theo yêu cầu công trình, cấp bảo vệ IP65/IP66 chịu thời tiết ngoài trời và môi trường công nghiệp.",
   },
   {
     title: "Thiết bị bảo vệ & Rơ-le",
-    subtitle: "SPD, Breakers & Zero-Export",
+    subtitle: "Thiết bị chống sét & Điều khiển bám tải",
     desc: "Aptomat chuyên dụng DC/AC, chống sét lan truyền Type II, cầu chì 1500V và thiết bị điều khiển bám tải Smart Meter.",
   },
   {
     title: "Giám sát hệ thống",
-    subtitle: "SCADA & Cloud Telemetry",
+    subtitle: "Hệ thống giám sát đám mây từ xa",
     desc: "Hệ thống thu thập dữ liệu thời gian thực qua Modbus/RS485, giám sát qua App điện thoại và cảnh báo lỗi tức thời.",
   },
 ];
@@ -251,14 +251,14 @@ export function SolutionsPage() {
   return (
     <div className="w-full bg-white text-[#0B0F19] font-sans antialiased selection:bg-[#008A4B] selection:text-white">
       {/* ============================================================= */}
-      {/* 1. HERO SECTION: EDITORIAL ENGINEERING ARCHITECTURE           */}
+      {/* 1. HERO SECTION                                              */}
       {/* ============================================================= */}
       <section className="relative w-full bg-white border-b border-neutral-200 pt-10 pb-16 lg:pt-14 lg:pb-24 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-          {/* Breadcrumb Tối Giản */}
-          <div className="flex items-center gap-2 text-xs font-mono font-bold text-neutral-400">
+          {/* Breadcrumb Tối Giản (Phông chính đồng bộ) */}
+          <div className="flex items-center gap-2 text-xs font-semibold text-neutral-500">
             <a href="/" className="hover:text-[#0B0F19] transition-colors">
-              Home
+              Trang chủ
             </a>
             <span>/</span>
             <span className="text-[#008A4B]">Giải pháp</span>
@@ -267,8 +267,8 @@ export function SolutionsPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
             {/* Cột trái: Typography & Content */}
             <div className="lg:col-span-7 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3 py-1 bg-neutral-100 border-l-2 border-[#008A4B] text-[#008A4B] text-xs font-mono font-bold uppercase tracking-widest">
-                <span>ENERGY SOLUTIONS</span>
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-neutral-100 border-l-2 border-[#008A4B] text-[#008A4B] text-xs font-bold uppercase tracking-wider">
+                <span>GIẢI PHÁP NĂNG LƯỢNG</span>
               </div>
 
               <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black uppercase text-[#0B0F19] tracking-tight leading-[1.08]">
@@ -299,17 +299,17 @@ export function SolutionsPage() {
               </div>
             </div>
 
-            {/* Cột phải: Hero Visual Kỹ thuật Chất lượng cao */}
+            {/* Cột phải: Hero Visual Kỹ thuật */}
             <div className="lg:col-span-5 space-y-3">
-              <div className="relative aspect-[4/3] bg-neutral-100 border border-neutral-200 overflow-hidden">
+              <div className="relative aspect-[4/3] bg-neutral-100 border border-neutral-200 overflow-hidden shadow-sm">
                 <img
                   src="https://images.unsplash.com/photo-1509391365360-2e959784a276?w=1200&auto=format&fit=crop&q=80"
                   alt="Hệ thống điện mặt trời áp mái công nghiệp TD VIỆT NAM"
                   className="w-full h-full object-cover"
                 />
-                <div className="absolute bottom-0 left-0 right-0 bg-[#0B0F19]/80 backdrop-blur-xs p-4 text-white border-t border-neutral-800">
-                  <div className="text-[10px] font-mono font-bold text-[#F15A24] uppercase tracking-wider">
-                    ENGINEERING ASSESSMENT
+                <div className="absolute bottom-0 left-0 right-0 bg-[#0B0F19]/90 backdrop-blur-xs p-4 text-white border-t border-neutral-800">
+                  <div className="text-[11px] font-bold text-[#F15A24] uppercase tracking-wide">
+                    ĐÁNH GIÁ KỸ THUẬT HIỆN TRƯỜNG
                   </div>
                   <div className="text-xs font-bold text-white mt-0.5">
                     Mô phỏng bức xạ &amp; Đấu nối chuẩn kỹ thuật EVN
@@ -317,8 +317,8 @@ export function SolutionsPage() {
                 </div>
               </div>
 
-              <div className="flex items-center justify-between text-[11px] font-mono text-neutral-400 px-1">
-                <span>SOLAR ROOFTOP &amp; BESS</span>
+              <div className="flex items-center justify-between text-xs text-neutral-500 font-medium px-1">
+                <span>ĐIỆN MẶT TRỜI MÁI NHÀ &amp; LƯU TRỮ BESS</span>
                 <span className="text-[#008A4B] font-bold">TD VIỆT NAM</span>
               </div>
             </div>
@@ -327,20 +327,20 @@ export function SolutionsPage() {
       </section>
 
       {/* ============================================================= */}
-      {/* 2. SECTION: PHÂN KHÚC KHÁCH HÀNG (CUSTOMER SEGMENTS)           */}
+      {/* 2. SECTION: PHÂN KHÚC KHÁCH HÀNG                              */}
       {/* ============================================================= */}
       <section className="w-full py-16 sm:py-24 bg-[#F8FAFC] border-b border-neutral-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-neutral-200 pb-6">
             <div className="space-y-1">
-              <span className="text-xs font-mono font-bold text-[#008A4B] uppercase tracking-widest">
-                SEGMENT PROFILES
+              <span className="text-xs font-bold text-[#008A4B] uppercase tracking-wider">
+                PHÂN KHÚC KHÁCH HÀNG
               </span>
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black uppercase text-[#0B0F19] tracking-tight">
                 Giải pháp theo từng nhu cầu sử dụng điện
               </h2>
             </div>
-            <p className="text-xs text-neutral-500 font-mono uppercase">
+            <p className="text-xs text-neutral-500 font-semibold uppercase">
               TỐI ƯU HÓA CHO TỪNG ĐẶC THÙ PHỤ TẢI
             </p>
           </div>
@@ -349,7 +349,7 @@ export function SolutionsPage() {
             {CUSTOMER_SEGMENTS.map((seg, sIdx) => (
               <div
                 key={sIdx}
-                className="bg-white border border-neutral-200 hover:border-[#0B0F19] transition-all flex flex-col justify-between overflow-hidden group"
+                className="bg-white border border-neutral-200 hover:border-[#0B0F19] transition-all flex flex-col justify-between overflow-hidden group shadow-xs"
               >
                 <div>
                   <div className="relative aspect-[16/10] bg-neutral-100 overflow-hidden border-b border-neutral-100">
@@ -358,14 +358,14 @@ export function SolutionsPage() {
                       alt={seg.title}
                       className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500"
                     />
-                    <div className="absolute top-3 left-3 bg-[#0B0F19] text-white px-2.5 py-1 text-xs font-mono font-bold">
+                    <div className="absolute top-3 left-3 bg-[#0B0F19] text-white px-2.5 py-1 text-xs font-bold">
                       {seg.number}
                     </div>
                   </div>
 
                   <div className="p-6 sm:p-7 space-y-4">
                     <div className="space-y-1">
-                      <div className="text-[10px] font-mono font-bold text-neutral-400 uppercase tracking-wider">
+                      <div className="text-xs font-bold text-[#008A4B] uppercase tracking-wide">
                         {seg.subtitle}
                       </div>
                       <h3 className="text-lg sm:text-xl font-black uppercase text-[#0B0F19] leading-snug">
@@ -381,7 +381,7 @@ export function SolutionsPage() {
                       {seg.tags.map((tag, tIdx) => (
                         <span
                           key={tIdx}
-                          className="px-2 py-0.5 bg-neutral-100 text-[10px] font-mono font-semibold text-neutral-600"
+                          className="px-2.5 py-1 bg-neutral-100 text-xs font-medium text-neutral-700"
                         >
                           {tag}
                         </span>
@@ -391,7 +391,7 @@ export function SolutionsPage() {
                 </div>
 
                 <div className="p-6 sm:p-7 pt-0 border-t border-neutral-100 flex items-center justify-between">
-                  <span className="text-[10px] font-mono font-bold text-neutral-400 uppercase">
+                  <span className="text-xs font-bold text-neutral-400 uppercase">
                     KHẢO SÁT CHUYÊN BIỆT
                   </span>
                   <a
@@ -409,7 +409,7 @@ export function SolutionsPage() {
       </section>
 
       {/* ============================================================= */}
-      {/* 3. SECTION: GIẢI PHÁP KỸ THUẬT CHUYÊN SÂU (LARGE ROWS)         */}
+      {/* 3. SECTION: GIẢI PHÁP KỸ THUẬT CHUYÊN SÂU                     */}
       {/* ============================================================= */}
       <section
         id="technical-solutions"
@@ -418,14 +418,14 @@ export function SolutionsPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-neutral-200 pb-6">
             <div className="space-y-1">
-              <span className="text-xs font-mono font-bold text-[#F15A24] uppercase tracking-widest">
-                CORE TECHNICAL ARCHITECTURE
+              <span className="text-xs font-bold text-[#F15A24] uppercase tracking-wider">
+                GIẢI PHÁP KỸ THUẬT
               </span>
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black uppercase text-[#0B0F19] tracking-tight">
                 Giải pháp kỹ thuật chuyên sâu
               </h2>
             </div>
-            <p className="text-xs text-neutral-500 font-mono uppercase max-w-md">
+            <p className="text-xs text-neutral-500 font-semibold uppercase max-w-md">
               Từ điện mặt trời tự dùng đến hệ thống lưu trữ và nguồn điện độc lập, mỗi cấu hình được
               lựa chọn dựa trên nhu cầu vận hành thực tế của công trình.
             </p>
@@ -433,7 +433,7 @@ export function SolutionsPage() {
 
           {/* Large Interactive Rows Layout */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-            {/* Vertical Rows List (Left - 7 cols) */}
+            {/* Danh sách giải pháp (Cột trái) */}
             <div className="lg:col-span-7 space-y-3">
               {TECHNICAL_SOLUTIONS.map((sol, index) => {
                 const isSelected = selectedSolutionIndex === index;
@@ -451,7 +451,7 @@ export function SolutionsPage() {
                       <div className="space-y-1.5 flex-1">
                         <div className="flex items-center gap-3">
                           <span
-                            className={`font-mono text-xs font-bold ${
+                            className={`text-xs font-bold ${
                               isSelected ? "text-[#008A4B]" : "text-neutral-400"
                             }`}
                           >
@@ -505,7 +505,7 @@ export function SolutionsPage() {
               })}
             </div>
 
-            {/* Preview Detail Card (Right - 5 cols, Sticky on Desktop) */}
+            {/* Thẻ xem trước chi tiết (Cột phải) */}
             <div className="hidden lg:block lg:col-span-5 sticky top-28 space-y-4">
               <div className="bg-white border border-[#0B0F19] p-6 sm:p-7 space-y-6 shadow-xs">
                 <div className="relative aspect-[16/10] bg-neutral-100 border border-neutral-200 overflow-hidden">
@@ -514,14 +514,14 @@ export function SolutionsPage() {
                     alt={activeSolution.name}
                     className="w-full h-full object-cover"
                   />
-                  <div className="absolute top-3 left-3 bg-[#0B0F19] text-white px-2 py-0.5 text-xs font-mono font-bold">
+                  <div className="absolute top-3 left-3 bg-[#0B0F19] text-white px-2.5 py-1 text-xs font-bold uppercase">
                     CẤU HÌNH {activeSolution.number}
                   </div>
                 </div>
 
                 <div className="space-y-3">
-                  <div className="text-[10px] font-mono font-bold text-[#F15A24] uppercase">
-                    TECHNICAL HIGHLIGHTS
+                  <div className="text-xs font-bold text-[#F15A24] uppercase tracking-wider">
+                    ĐẶC TÍNH KỸ THUẬT NỔI BẬT
                   </div>
                   <h4 className="text-lg font-black uppercase text-[#0B0F19] leading-snug">
                     {activeSolution.headline}
@@ -537,11 +537,11 @@ export function SolutionsPage() {
                   </div>
                 </div>
 
-                <div className="p-3.5 bg-neutral-100 border border-neutral-200 text-[11px] font-mono text-neutral-700 space-y-1">
+                <div className="p-3.5 bg-neutral-100 border border-neutral-200 text-xs text-neutral-700 space-y-1">
                   <div className="font-bold text-neutral-900 uppercase">
                     Sơ đồ nguyên lý tiêu chuẩn:
                   </div>
-                  <div className="text-neutral-600">{activeSolution.schematic}</div>
+                  <div className="text-neutral-600 font-medium">{activeSolution.schematic}</div>
                 </div>
 
                 <div className="pt-2">
@@ -567,8 +567,8 @@ export function SolutionsPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             {/* 50% Text Content */}
             <div className="lg:col-span-6 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#F15A24]/10 border-l-2 border-[#F15A24] text-[#F15A24] text-xs font-mono font-bold uppercase tracking-widest">
-                <span>FEATURED SOLUTION / ESS</span>
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#F15A24]/10 border-l-2 border-[#F15A24] text-[#F15A24] text-xs font-bold uppercase tracking-wider">
+                <span>GIẢI PHÁP TIÊU ĐIỂM</span>
               </div>
 
               <h2 className="text-3xl sm:text-5xl font-black uppercase text-white tracking-tight leading-tight">
@@ -583,7 +583,7 @@ export function SolutionsPage() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
                 <div className="p-4 bg-neutral-900 border border-neutral-800 space-y-1">
                   <div className="text-sm font-bold text-white uppercase">
-                    Cắt đỉnh phụ tải (Peak Shaving)
+                    Cắt đỉnh phụ tải (Tối ưu giờ cao điểm)
                   </div>
                   <p className="text-xs text-neutral-400 font-normal">
                     Tự động xả pin trong khung giờ cao điểm để giảm tiền điện tính theo biểu giá 3
@@ -607,13 +607,13 @@ export function SolutionsPage() {
                   href="/contact"
                   className="inline-flex items-center gap-3 px-8 py-3.5 bg-[#F15A24] hover:bg-[#d94816] text-white text-xs font-bold uppercase tracking-wider transition-all shadow-md shadow-[#F15A24]/20 hover:translate-y-[-1px]"
                 >
-                  <span>KHÁM PHÁ HYBRID &amp; ESS</span>
+                  <span>KHÁM PHÁ GIẢI PHÁP HYBRID &amp; LƯU TRỮ</span>
                   <ArrowRight className="w-4 h-4" />
                 </a>
               </div>
             </div>
 
-            {/* 50% High-Precision Technical Imagery */}
+            {/* 50% Technical Imagery */}
             <div className="lg:col-span-6">
               <div className="relative aspect-[4/3] bg-neutral-900 border border-neutral-800 overflow-hidden shadow-2xl">
                 <img
@@ -621,8 +621,8 @@ export function SolutionsPage() {
                   alt="Tủ pin lưu trữ năng lượng Lithium ESS công nghiệp"
                   className="w-full h-full object-cover"
                 />
-                <div className="absolute top-4 right-4 bg-[#0B0F19]/90 border border-neutral-700 px-3 py-1.5 text-xs font-mono text-[#008A4B] font-bold">
-                  LiFePO4 &gt; 6000 CYCLES
+                <div className="absolute top-4 right-4 bg-[#0B0F19]/90 border border-neutral-700 px-3 py-1.5 text-xs text-[#008A4B] font-bold uppercase">
+                  LƯU TRỮ LIFEPO4 &gt; 6.000 CHU KỲ
                 </div>
               </div>
             </div>
@@ -631,13 +631,13 @@ export function SolutionsPage() {
       </section>
 
       {/* ============================================================= */}
-      {/* 5. SECTION: TRIẾT LÝ THIẾT KẾ (DESIGN PHILOSOPHY)             */}
+      {/* 5. SECTION: TRIẾT LÝ THIẾT KẾ                                 */}
       {/* ============================================================= */}
       <section className="w-full py-16 sm:py-24 bg-white border-b border-neutral-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
           <div className="max-w-3xl space-y-3">
-            <span className="text-xs font-mono font-bold text-[#008A4B] uppercase tracking-widest">
-              DESIGN PHILOSOPHY
+            <span className="text-xs font-bold text-[#008A4B] uppercase tracking-wider">
+              TRIẾT LÝ THIẾT KẾ
             </span>
             <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black uppercase text-[#0B0F19] tracking-tight leading-tight">
               Không phải hệ thống lớn nhất.
@@ -656,7 +656,7 @@ export function SolutionsPage() {
                 className="bg-white border border-neutral-200 p-6 sm:p-7 space-y-4 hover:border-[#0B0F19] transition-all flex flex-col justify-between"
               >
                 <div className="space-y-3">
-                  <div className="text-3xl sm:text-4xl font-black font-mono text-neutral-300">
+                  <div className="text-3xl sm:text-4xl font-black text-neutral-300">
                     {prin.number}
                   </div>
                   <h3 className="text-base font-black uppercase text-[#0B0F19]">{prin.title}</h3>
@@ -665,7 +665,7 @@ export function SolutionsPage() {
                   </p>
                 </div>
 
-                <div className="pt-3 border-t border-neutral-100 text-[10px] font-mono text-[#008A4B] uppercase font-bold">
+                <div className="pt-3 border-t border-neutral-100 text-xs font-bold text-[#008A4B] uppercase">
                   TIÊU CHUẨN KỸ THUẬT
                 </div>
               </div>
@@ -675,20 +675,20 @@ export function SolutionsPage() {
       </section>
 
       {/* ============================================================= */}
-      {/* 6. SECTION: QUY TRÌNH THỰC HIỆN (PROCESS SEQUENCE)            */}
+      {/* 6. SECTION: QUY TRÌNH THỰC HIỆN                               */}
       {/* ============================================================= */}
       <section className="w-full py-16 sm:py-24 bg-[#F8FAFC] border-b border-neutral-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-neutral-200 pb-6">
             <div className="space-y-1">
-              <span className="text-xs font-mono font-bold text-[#008A4B] uppercase tracking-widest">
-                IMPLEMENTATION PROCESS
+              <span className="text-xs font-bold text-[#008A4B] uppercase tracking-wider">
+                QUY TRÌNH TRIỂN KHAI
               </span>
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black uppercase text-[#0B0F19] tracking-tight">
                 Quy trình thực hiện chuẩn mực
               </h2>
             </div>
-            <p className="text-xs text-neutral-500 font-mono uppercase">
+            <p className="text-xs text-neutral-500 font-semibold uppercase">
               MINH BẠCH TỪNG BƯỚC KHẢO SÁT &amp; THIẾT KẾ
             </p>
           </div>
@@ -702,10 +702,8 @@ export function SolutionsPage() {
               >
                 <div className="space-y-2">
                   <div className="flex items-center justify-between">
-                    <span className="text-xl font-black font-mono text-[#008A4B]">
-                      {step.number}
-                    </span>
-                    <span className="text-[10px] font-mono text-neutral-400 uppercase">
+                    <span className="text-xl font-black text-[#008A4B]">{step.number}</span>
+                    <span className="text-xs font-bold text-neutral-400 uppercase">
                       BƯỚC {sIdx + 1}
                     </span>
                   </div>
@@ -714,7 +712,7 @@ export function SolutionsPage() {
                     {step.title}
                   </h3>
 
-                  <p className="text-[11px] text-neutral-600 leading-relaxed font-normal">
+                  <p className="text-xs text-neutral-600 leading-relaxed font-normal">
                     {step.desc}
                   </p>
                 </div>
@@ -725,14 +723,14 @@ export function SolutionsPage() {
       </section>
 
       {/* ============================================================= */}
-      {/* 7. SECTION: THIẾT BỊ & CÔNG NGHỆ (HARDWARE ECOSYSTEM)          */}
+      {/* 7. SECTION: THIẾT BỊ & CÔNG NGHỆ                               */}
       {/* ============================================================= */}
       <section className="w-full py-16 sm:py-24 bg-white border-b border-neutral-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-neutral-200 pb-6">
             <div className="space-y-1">
-              <span className="text-xs font-mono font-bold text-[#F15A24] uppercase tracking-widest">
-                EQUIPMENT &amp; TECHNOLOGY
+              <span className="text-xs font-bold text-[#F15A24] uppercase tracking-wider">
+                THIẾT BỊ &amp; CÔNG NGHỆ
               </span>
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black uppercase text-[#0B0F19] tracking-tight">
                 Thiết bị &amp; công nghệ
@@ -751,7 +749,7 @@ export function SolutionsPage() {
                 className="bg-neutral-50 p-6 border border-neutral-200 hover:border-[#0B0F19] hover:bg-white transition-all space-y-3 flex flex-col justify-between"
               >
                 <div className="space-y-2">
-                  <div className="text-[10px] font-mono font-bold text-[#008A4B] uppercase">
+                  <div className="text-xs font-bold text-[#008A4B] uppercase tracking-wide">
                     {cat.subtitle}
                   </div>
                   <h3 className="text-sm sm:text-base font-bold uppercase text-[#0B0F19] leading-snug">
@@ -760,7 +758,7 @@ export function SolutionsPage() {
                   <p className="text-xs text-neutral-600 leading-relaxed font-normal">{cat.desc}</p>
                 </div>
 
-                <div className="pt-3 border-t border-neutral-200/80 text-[10px] font-mono text-neutral-400">
+                <div className="pt-3 border-t border-neutral-200/80 text-xs font-medium text-neutral-500 uppercase">
                   TIÊU CHUẨN CO / CQ
                 </div>
               </div>
@@ -769,8 +767,8 @@ export function SolutionsPage() {
             {/* Card điều hướng sang trang Sản phẩm */}
             <div className="bg-[#0B0F19] text-white p-6 border border-neutral-800 flex flex-col justify-between space-y-4">
               <div className="space-y-2">
-                <div className="text-[10px] font-mono font-bold text-[#F15A24] uppercase">
-                  CATALOG &amp; HARDWARE
+                <div className="text-xs font-bold text-[#F15A24] uppercase tracking-wide">
+                  TÀI LIỆU &amp; DANH MỤC THIẾT BỊ
                 </div>
                 <h3 className="text-base font-bold uppercase text-white leading-snug">
                   Danh Mục Thiết Bị Đầy Đủ
@@ -794,13 +792,13 @@ export function SolutionsPage() {
       </section>
 
       {/* ============================================================= */}
-      {/* 8. FINAL CTA: DEEP NAVY MINIMALIST CONTACT BANNER             */}
+      {/* 8. FINAL CTA: TIẾP NHẬN YÊU CẦU GIẢI PHÁP                    */}
       {/* ============================================================= */}
       <section className="w-full py-16 sm:py-24 bg-[#0B0F19] text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-neutral-950 p-8 sm:p-12 lg:p-16 border border-neutral-800 flex flex-col lg:flex-row lg:items-center justify-between gap-8">
             <div className="space-y-4 max-w-2xl">
-              <div className="inline-flex items-center gap-2 text-xs font-mono font-bold text-[#008A4B] uppercase tracking-widest">
+              <div className="inline-flex items-center gap-2 text-xs font-bold text-[#008A4B] uppercase tracking-wider">
                 <Zap className="w-3.5 h-3.5" />
                 <span>TIẾP NHẬN YÊU CẦU GIẢI PHÁP</span>
               </div>
@@ -814,7 +812,7 @@ export function SolutionsPage() {
                 VIỆT NAM sẵn sàng lắng nghe và lập phương án sơ bộ.
               </p>
 
-              <div className="flex flex-col sm:flex-row sm:items-center gap-4 text-xs font-mono text-neutral-300 pt-2">
+              <div className="flex flex-col sm:flex-row sm:items-center gap-4 text-xs font-medium text-neutral-300 pt-2">
                 <div className="flex items-center gap-2">
                   <Phone className="w-4 h-4 text-[#008A4B]" />
                   <span>

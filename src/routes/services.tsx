@@ -1,21 +1,21 @@
-import React, { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import {
-  ShieldCheck,
-  CheckCircle2,
+  Zap,
   ArrowRight,
-  Award,
+  ArrowUpRight,
   Phone,
-  BarChart3,
+  Mail,
   Check,
-  Send,
-  Activity,
+  ChevronDown,
   ChevronRight,
+  CheckCircle2,
+  FileText,
 } from "lucide-react";
+import { useState } from "react";
 
 const title = "Dịch Vụ Kỹ Thuật & Tổng Thầu EPC | TD VIỆT NAM";
 const description =
-  "Dịch vụ kỹ thuật chuyên sâu và tổng thầu EPC Điện mặt trời, hệ thống lưu trữ năng lượng BESS, khảo sát mô phỏng PVsyst và vận hành bảo trì O&M trọn gói.";
+  "TD VIỆT NAM cung cấp các dịch vụ kỹ thuật chuyên sâu và tổng thầu EPC Điện mặt trời, hệ thống lưu trữ năng lượng BESS, khảo sát mô phỏng PVsyst và vận hành bảo trì O&M trọn gói.";
 
 export const Route = createFileRoute("/services")({
   head: () => ({
@@ -34,469 +34,628 @@ export const Route = createFileRoute("/services")({
 });
 
 /* =========================================================================
-   DỮ LIỆU KHỐI 1: TƯ VẤN & KỸ THUẬT DỰ ÁN
+   1. DỮ LIỆU: HAI NHÓM NĂNG LỰC CỐT LÕI (EDITORIAL GROUPS)
 ========================================================================= */
-const CONSULTING_SERVICES = [
+const CAPABILITY_GROUPS = [
   {
-    id: "pvsyst-simulation",
-    stepNumber: "01",
-    title: "Khảo sát & Mô phỏng sản lượng chuyên sâu",
-    tag: "SIMULATION & FEASIBILITY",
-    image:
-      "https://images.unsplash.com/photo-1498084393753-b411b2d26b34?w=800&auto=format&fit=crop&q=80",
-    description:
-      "Đo đạc hiện trạng kết cấu mái, góc nghiêng, hướng nắng và lập mô hình không gian 3D nhằm tính toán chính xác bức xạ mặt trời.",
-    features: [
-      "Khảo sát tải trọng kết cấu mái xưởng, độ võng xà gồ và hệ thống thoát nước hiện hữu.",
-      "Mô phỏng đổ bóng 3D từng giờ trong năm bằng phần mềm PVsyst tiêu chuẩn quốc tế.",
-      "Xuất báo cáo sản lượng P50/P90, dự báo tỷ suất hiệu suất PR (Performance Ratio).",
-      "Lập bảng tính toán dòng tiền hoàn vốn (Payback Time) và chi phí quy dẫn LCOE.",
+    number: "01",
+    badge: "ENGINEERING & CONSULTING | 01",
+    title: "Tư vấn & Kỹ thuật dự án",
+    desc: "Thiết lập nền tảng kỹ thuật và bài toán hiệu quả kinh tế dựa trên dữ liệu đo đạc thực tế của từng công trình.",
+    services: [
+      "Khảo sát & Mô phỏng sản lượng PVsyst 3D",
+      "Thiết kế kỹ thuật & Dự toán hệ thống (IFC / SLD)",
+      "Tư vấn pháp lý, thỏa thuận đấu nối & PCCC EVN",
     ],
+    borderAccent: "border-l-4 border-[#00875A]",
   },
   {
-    id: "engineering-design",
-    stepNumber: "02",
+    number: "02",
+    badge: "EPC & ASSET MANAGEMENT | 02",
+    title: "Triển khai & Vận hành",
+    desc: "Biến thiết kế thành công trình vận hành ổn định với chuẩn thi công công nghiệp và quản trị tài sản trọn đời 25 năm.",
+    services: [
+      "Tổng thầu EPC trọn gói (Chìa khóa trao tay)",
+      "Bảo trì, Đo kiểm Megger / I-V & Vận hành (O&M)",
+      "Nâng cấp & Mở rộng hệ thống lưu trữ BESS / Hybrid",
+      "Cung cấp vật tư & Thiết bị chính hãng Tier-1",
+    ],
+    borderAccent: "border-l-4 border-[#FF5722]",
+  },
+];
+
+/* =========================================================================
+   2. DỮ LIỆU: CHI TIẾT 7 DỊCH VỤ (ACCORDION INTERACTIVE LIST)
+========================================================================= */
+interface DetailedService {
+  id: string;
+  number: string;
+  badge: string;
+  group: string;
+  title: string;
+  summary: string;
+  scope: string[];
+  deliverables: string[];
+  image: string;
+  borderAccent: string;
+}
+
+const ALL_SERVICES_LIST: DetailedService[] = [
+  {
+    id: "srv-01",
+    number: "01",
+    badge: "SIMULATION & YIELD AUDIT | PVSYST",
+    group: "TƯ VẤN & KỸ THUẬT",
+    title: "Khảo sát & Mô phỏng sản lượng",
+    summary:
+      "Đo trắc đạc góc nghiêng, phân tích tải trọng tĩnh/động kết cấu mái và lập mô hình 3D đổ bóng theo từng giờ trên phần mềm PVsyst tiêu chuẩn quốc tế.",
+    scope: [
+      "Khảo sát kết cấu dầm xà gồ, độ võng mái tôn và hệ thống thoát nước hiện trạng.",
+      "Thu thập dữ liệu bức xạ vệ tinh Meteonorm trong 20 năm gần nhất tại tọa độ công trình.",
+      "Mô phỏng 3D vật cản đổ bóng (cây cối, ống khói, nóc gió lân cận) theo từng giờ trong năm.",
+      "Tính toán chỉ số hiệu suất PR (Performance Ratio) và phân tích dòng tiền hoàn vốn LCOE.",
+    ],
+    deliverables: [
+      "Báo cáo mô phỏng sản lượng PVsyst (P50/P90)",
+      "Bản đánh giá khả năng chịu tải kết cấu mái",
+      "Phương án tài chính & Thời gian thu hồi vốn",
+    ],
+    image:
+      "https://images.unsplash.com/photo-1498084393753-b411b2d26b34?w=1000&auto=format&fit=crop&q=80",
+    borderAccent: "border-l-4 border-[#00875A]",
+  },
+  {
+    id: "srv-02",
+    number: "02",
+    badge: "ELECTRICAL CAD & SLD | IFC DESIGN",
+    group: "TƯ VẤN & KỸ THUẬT",
     title: "Thiết kế kỹ thuật & Dự toán hệ thống",
-    tag: "IFC & DETAILED DESIGN",
-    image:
-      "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=800&auto=format&fit=crop&q=80",
-    description:
-      "Lập bộ hồ sơ bản vẽ thi công IFC hoàn chỉnh, tối ưu hóa điểm đấu nối và cấu trúc chuỗi tấm pin đạt hiệu suất cao nhất.",
-    features: [
-      "Thiết kế sơ đồ nguyên lý một sợi (SLD) chi tiết từ chuỗi String DC đến tủ phân phối AC.",
-      "Phân bổ String Layout tối ưu dải điện áp làm việc MPPT của từng biến tần Inverter.",
-      "Thiết kế khung giàn nhôm định hình Anodized chịu bão cấp 12 và chống dột mái tôn chuyên dụng.",
-      "Bóc tách bảng dự toán khối lượng (BOQ) minh bạch từng mã vật tư, phụ kiện và cáp điện.",
+    summary:
+      "Chuyển hóa bài toán của khách hàng thành bộ hồ sơ bản vẽ thi công IFC hoàn chỉnh, tối ưu hóa điểm đấu nối và dải điện áp làm việc MPPT của Inverter.",
+    scope: [
+      "Thiết kế sơ đồ nguyên lý một sợi (SLD) từ chuỗi tấm pin DC đến tủ phân phối hạ thế AC.",
+      "Phân bổ String Layout tối ưu hiệu suất MPPT, hạn chế tối đa lệch áp giữa các chuỗi.",
+      "Tính toán cơ học hệ khung giàn nhôm định hình Anodized AL6005-T5 chịu tải bão cấp 12.",
+      "Bóc tách dự toán khối lượng (BOQ) minh bạch từng mã vật tư, phụ kiện và cáp điện.",
     ],
+    deliverables: [
+      "Bộ bản vẽ thi công cơ điện hoàn chỉnh (IFC)",
+      "Bản vẽ kết cấu khung giàn & giải pháp chống thấm",
+      "Bảng dự toán khối lượng vật tư (BOQ) chi tiết",
+    ],
+    image:
+      "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=1000&auto=format&fit=crop&q=80",
+    borderAccent: "border-l-4 border-[#00875A]",
   },
   {
-    id: "grid-compliance",
-    stepNumber: "03",
-    title: "Tư vấn pháp lý & Thủ tục đấu nối EVN",
-    tag: "LEGAL & GRID INTERCONNECTION",
-    image:
-      "https://images.unsplash.com/photo-1581092335397-9583fe92d232?w=800&auto=format&fit=crop&q=80",
-    description:
-      "Hỗ trợ chủ đầu tư hoàn thiện toàn bộ thủ tục đăng ký phát triển điện tự dùng và thỏa thuận kỹ thuật với các công ty Điện lực.",
-    features: [
-      "Hỗ trợ lập hồ sơ đăng ký phát triển nguồn điện mặt trời mái nhà tự sản tự tiêu.",
-      "Tư vấn giải pháp kỹ thuật đáp ứng quy chuẩn kỹ thuật đấu nối trung thế / hạ thế EVN.",
-      "Tích hợp thiết bị chống phát ngược lưới Zero-Export và rơ-le bảo vệ rò điện, chạm đất.",
-      "Tư vấn giải pháp an toàn phòng cháy chữa cháy (PCCC) cho hệ thống điện áp mái nhà xưởng.",
+    id: "srv-03",
+    number: "03",
+    badge: "GRID CONNECTION & HSE | REGULATION",
+    group: "TƯ VẤN & KỸ THUẬT",
+    title: "Tư vấn pháp lý & Đấu nối EVN",
+    summary:
+      "Hỗ trợ khách hàng hoàn thiện toàn bộ thủ tục đăng ký phát triển điện tự sản tự tiêu, thỏa thuận kỹ thuật với các công ty Điện lực và tiêu chuẩn an toàn PCCC.",
+    scope: [
+      "Lập hồ sơ đăng ký phát triển nguồn điện mặt trời mái nhà theo đúng quy định hiện hành.",
+      "Tư vấn giải pháp kỹ thuật đáp ứng thỏa thuận đấu nối trung thế / hạ thế với Điện lực EVN.",
+      "Tích hợp bộ điều khiển chống phát ngược lưới Zero-Export và rơ-le bảo vệ đóng cắt tự động.",
+      "Tư vấn phương án hành lang an toàn và giải pháp ngắt khẩn cấp Rapid Shutdown cho PCCC.",
     ],
+    deliverables: [
+      "Hồ sơ đăng ký phát triển điện mặt trời tự dùng",
+      "Thỏa thuận kỹ thuật đấu nối lưới điện EVN",
+      "Phương án an toàn PCCC mái nhà xưởng",
+    ],
+    image:
+      "https://images.unsplash.com/photo-1581092335397-9583fe92d232?w=1000&auto=format&fit=crop&q=80",
+    borderAccent: "border-l-4 border-[#00875A]",
   },
-];
-
-/* =========================================================================
-   DỮ LIỆU KHỐI 2: TRIỂN KHAI & VẬN HÀNH
-========================================================================= */
-const EXECUTION_SERVICES = [
   {
-    id: "epc-turnkey",
+    id: "srv-04",
+    number: "04",
+    badge: "EPC CONTRACTOR | TURNKEY EXECUTION",
+    group: "TRIỂN KHAI & VẬN HÀNH",
     title: "Tổng thầu EPC trọn gói (Chìa khóa trao tay)",
-    tag: "FULL TURNKEY EPC",
-    image:
-      "https://images.unsplash.com/photo-1509391365360-2e959784a276?w=800&auto=format&fit=crop&q=80",
     summary:
-      "Quản lý toàn diện từ khâu mua sắm vật tư Tier-1, logistics, thi công lắp đặt cơ điện đến đóng điện hòa lưới an toàn.",
-    highlights: [
-      "Cung ứng thiết bị Inverter, tấm pin PV và pin lưu trữ Tier-1 có đầy đủ CO/CQ.",
-      "Thi công chuẩn điện công nghiệp: máng cáp mạ kẽm nhúng nóng, tủ điện IP65/IP66.",
-      "Hệ thống tiếp địa an toàn và kim thu sét đo kiểm điện trở đất đạt R < 10 Ω.",
-      "Đo kiểm nghiệm thu đường cong đặc tính I-V, điện trở cách điện Megger trước khi đóng điện.",
+      "Chịu trách nhiệm toàn diện từ mua sắm vật tư Tier-1, logistics, thi công cơ điện tại công trường đến đóng điện hòa lưới và nghiệm thu bàn giao.",
+    scope: [
+      "Cung ứng thiết bị Inverter, Tấm pin N-Type TOPCon và pin lưu trữ chính hãng có CO/CQ.",
+      "Thi công chuẩn cơ điện công nghiệp: máng cáp mạ kẽm, tủ điện bảo vệ đạt chuẩn IP65/IP66.",
+      "Hệ thống tiếp địa an toàn và kim thu sét đo kiểm điện trở đất đạt chuẩn R < 4.0 Ω.",
+      "Đo kiểm Megger điện trở cách điện, đo đường cong đặc tính I-V trước khi đóng điện.",
     ],
+    deliverables: [
+      "Công trình đóng điện hòa lưới an toàn",
+      "Hồ sơ hoàn công & Biên bản nghiệm thu kỹ thuật",
+      "Chứng nhận bảo hành thiết bị chính hãng",
+    ],
+    image:
+      "https://images.unsplash.com/photo-1509391365360-2e959784a276?w=1000&auto=format&fit=crop&q=80",
+    borderAccent: "border-l-4 border-[#FF5722]",
   },
   {
-    id: "om-maintenance",
+    id: "srv-05",
+    number: "05",
+    badge: "O&M SERVICE | ASSET MANAGEMENT",
+    group: "TRIỂN KHAI & VẬN HÀNH",
     title: "Bảo trì, Đo kiểm & Vận hành (O&M)",
-    tag: "O&M & ASSET MANAGEMENT",
-    image:
-      "https://images.unsplash.com/photo-1527977966376-1c8408f9f108?w=800&auto=format&fit=crop&q=80",
     summary:
-      "Duy trì hiệu suất phát điện liên tục ở mức đỉnh, phát hiện sớm các nguy cơ chạm chập và suy hao cell pin.",
-    highlights: [
-      "Dịch vụ rửa tấm quang điện định kỳ bằng thiết bị chuyên dụng và nguồn nước khử ion.",
-      "Đo kiểm quét nhiệt hồng ngoại (Thermal Imaging / Drone) phát hiện điểm nóng Hot-spot.",
-      "Giám sát từ xa 24/7 qua nền tảng Cloud/App, tự động gửi cảnh báo sự cố kỹ thuật.",
-      "Đội phản ứng nhanh có mặt tại công trường xử lý sự cố trong vòng 24–48 giờ.",
+      "Duy trì tỷ suất hiệu suất PR liên tục ở mức đỉnh cao, phát hiện sớm các nguy cơ chạm chập và suy hao cell pin trong suốt vòng đời 25 năm.",
+    scope: [
+      "Vệ sinh bề mặt tấm quang điện định kỳ bằng thiết bị chuyên dụng và nguồn nước lọc RO.",
+      "Đo quét nhiệt hồng ngoại (Thermal Scanning) phát hiện sớm các điểm nóng Hot-spot trên giàn pin.",
+      "Giám sát trực tuyến 24/7 qua nền tảng Cloud/App, tự động gửi cảnh báo sự cố kỹ thuật.",
+      "Đội phản ứng kỹ thuật có mặt tại hiện trường xử lý sự cố trong vòng 24–48 giờ.",
     ],
+    deliverables: [
+      "Báo cáo kiểm toán hiệu suất định kỳ (PR Audit)",
+      "Bản đồ nhiệt hồng ngoại phát hiện điểm nóng",
+      "Dịch vụ hỗ trợ kỹ thuật hiện trường 24/7",
+    ],
+    image:
+      "https://images.unsplash.com/photo-1527977966376-1c8408f9f108?w=1000&auto=format&fit=crop&q=80",
+    borderAccent: "border-l-4 border-[#FF5722]",
   },
   {
-    id: "bess-upgrade",
+    id: "srv-06",
+    number: "06",
+    badge: "BESS INTEGRATION | PEAK SHAVING",
+    group: "TRIỂN KHAI & VẬN HÀNH",
     title: "Nâng cấp & Mở rộng hệ thống lưu trữ (BESS/Hybrid)",
-    tag: "HYBRID & ENERGY STORAGE",
-    image:
-      "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&auto=format&fit=crop&q=80",
     summary:
-      "Tối ưu hóa bài toán kinh tế sau giá FIT, lưu trữ nguồn điện dư ban ngày để sử dụng vào khung giờ cao điểm giá điện cao.",
-    highlights: [
+      "Tối ưu hóa bài toán kinh tế sau FIT, lưu trữ nguồn điện dư ban ngày bằng pin Lithium LiFePO4 để sử dụng vào khung giờ cao điểm và cấp điện khi mất lưới.",
+    scope: [
       "Khảo sát và tích hợp Inverter Hybrid cùng khối pin Lithium LiFePO4 cho hệ thống hiện hữu.",
-      "Cài đặt chế độ cắt đỉnh phụ tải (Peak Shaving) tiết kiệm tiền điện giờ cao điểm.",
-      "Hệ thống chuyển mạch tự động ATS với thời gian đáp ứng < 20ms cấp điện khi mất lưới.",
-      "Cài đặt lập trình sạc/xả thông minh theo biểu giá điện 3 giá của EVN.",
+      "Cài đặt tính năng cắt đỉnh phụ tải (Peak Shaving) tiết kiệm chi phí giờ cao điểm của EVN.",
+      "Hệ thống chuyển mạch tự động ATS với thời gian đáp ứng < 10ms bảo vệ nguồn liên tục.",
+      "Cài đặt lập trình sạc/xả thông minh theo biểu đồ phụ tải thực tế của nhà máy.",
     ],
+    deliverables: [
+      "Hệ thống lưu trữ BESS vận hành tự động",
+      "Hệ thống chuyển nguồn UPS dự phòng máy chủ",
+      "Bảng phân tích dòng tiền tiết kiệm điện 3 giá",
+    ],
+    image:
+      "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1000&auto=format&fit=crop&q=80",
+    borderAccent: "border-l-4 border-[#FF5722]",
   },
   {
-    id: "hardware-supply",
+    id: "srv-07",
+    number: "07",
+    badge: "TIER-1 SUPPLY | HARDWARE STANDARDS",
+    group: "TRIỂN KHAI & VẬN HÀNH",
     title: "Cung cấp vật tư & Thiết bị chính hãng",
-    tag: "GENUINE EQUIPMENT SUPPLY",
-    image:
-      "https://images.unsplash.com/photo-1508873696983-2df5293cb32f?w=800&auto=format&fit=crop&q=80",
     summary:
-      "Phân phối trực tiếp các dòng sản phẩm chất lượng cao từ các thương hiệu hàng đầu thế giới được bảo hành chính hãng.",
-    highlights: [
-      "Phân phối Inverter chuỗi/Hybrid, tấm pin công nghệ N-Type TOPCon và pin lưu trữ Lithium.",
-      "Cáp điện DC năng lượng mặt trời chuyên dụng 1500V cách điện kép XLPO chống tia cực tím UV.",
-      "Đầu nối MC4 chính hãng chịu dòng cao, thanh ray nhôm Anodized AL6005-T5 và kẹp Inox 304.",
-      "Tủ điện đóng cắt bảo vệ DC/AC tích hợp thiết bị chống sét lan truyền Type II.",
+      "Phân phối trực tiếp các dòng sản phẩm chất lượng cao từ các thương hiệu Tier-1 toàn cầu, có lưu kho, thử nghiệm và bảo hành trực tiếp tại Việt Nam.",
+    scope: [
+      "Phân phối Inverter chuỗi/Hybrid, tấm pin công nghệ N-Type TOPCon hiệu suất cao trên 22.5%.",
+      "Cáp điện DC 1500V chuyên dụng cách điện kép XLPO chống tia cực tím UV ngoài trời.",
+      "Đầu nối MC4 chính hãng, thanh ray nhôm Anodized AL6005-T5 và kẹp Inox 304 không gỉ.",
+      "Tủ điện đóng cắt bảo vệ AC/DC tích hợp thiết bị chống sét lan truyền Type II.",
     ],
+    deliverables: [
+      "Hồ sơ chứng nhận xuất xứ & chất lượng (CO/CQ)",
+      "Bảo hành điện tử trực tiếp từ nhà sản xuất",
+      "Có thiết bị dự phòng thay thế tạm thời khi bảo hành",
+    ],
+    image:
+      "https://images.unsplash.com/photo-1508873696983-2df5293cb32f?w=1000&auto=format&fit=crop&q=80",
+    borderAccent: "border-l-4 border-[#FF5722]",
   },
 ];
 
 /* =========================================================================
-   BẢNG TIÊU CHÍ CAM KẾT CHẤT LƯỢNG
+   3. DỮ LIỆU: QUY TRÌNH TRIỂN KHAI 6 BƯỚC (WORKFLOW)
 ========================================================================= */
-const COMMITMENTS = [
+const WORKFLOW_STEPS = [
   {
-    criterion: "Tính chính xác",
-    commitment: "Sai số mô phỏng sản lượng PVsyst so với thực tế phát điện kiểm soát dưới 5%.",
-    icon: BarChart3,
-    badge: "PVsyst P50/P90",
+    step: "01",
+    badge: "STEP 01 | SITE AUDIT",
+    title: "Khảo sát",
+    desc: "Đo đạc kết cấu mái, góc nghiêng, hướng nắng và ghi nhận chính xác biểu đồ phụ tải thực tế của công trình.",
   },
   {
-    criterion: "Vật tư thiết bị",
-    commitment:
-      "100% thiết bị chính hãng Tier-1, đầy đủ chứng chỉ CO/CQ và kích hoạt bảo hành điện tử.",
-    icon: Award,
-    badge: "100% Tier-1",
+    step: "02",
+    badge: "STEP 02 | IFC DESIGN",
+    title: "Thiết kế",
+    desc: "Mô phỏng 3D trên PVsyst kiểm soát bóng che và xuất bản vẽ thi công cơ điện IFC tối ưu chuỗi MPPT theo chuẩn EVN.",
   },
   {
-    criterion: "An toàn công trình",
-    commitment:
-      "Bảo hành chống thấm dột vị trí lắp đặt, kết cấu giàn khung vững chắc trước mùa mưa bão.",
-    icon: ShieldCheck,
-    badge: "Chuẩn QCVN",
+    step: "03",
+    badge: "STEP 03 | FINANCIAL BOQ",
+    title: "Dự toán",
+    desc: "Lập bảng khối lượng BOQ minh bạch từng mã vật tư và phương án tài chính hoàn vốn LCOE chi tiết.",
   },
   {
-    criterion: "Hỗ trợ kỹ thuật",
-    commitment:
-      "Kỹ sư chuyên ngành trực tiếp phụ trách dự án, không qua trung gian sales, phản hồi kỹ thuật trong vòng 2 giờ.",
-    icon: Activity,
-    badge: "SLA 2 Giờ",
+    step: "04",
+    badge: "STEP 04 | HSE EXECUTION",
+    title: "Triển khai",
+    desc: "Cung ứng 100% vật tư Tier-1 có CO/CQ, thi công máng cáp mạ kẽm, tủ điện IP65 và tiếp địa an toàn R < 4.0 Ω.",
+  },
+  {
+    step: "05",
+    badge: "STEP 05 | COMMISSIONING",
+    title: "Nghiệm thu",
+    desc: "Đo kiểm Megger cách điện, quét nhiệt Hot-spot trước khi đóng điện và hoàn thiện hồ sơ nghiệm thu kỹ thuật.",
+  },
+  {
+    step: "06",
+    badge: "STEP 06 | 25-YEAR O&M",
+    title: "Vận hành",
+    desc: "Kích hoạt giám sát Cloud 24/7 và đồng hành bảo trì O&M trọn vòng đời 25 năm của công trình.",
+  },
+];
+
+/* =========================================================================
+   4. DỮ LIỆU: GIÁ TRỊ KỸ THUẬT CHỨNG MINH THỰC TẾ (4 TRỤ CỘT)
+========================================================================= */
+const ENGINEERING_VALUES = [
+  {
+    number: "01",
+    badge: "METEONORM DATA | P50/P90",
+    title: "Phương Án Có Cơ Sở Dữ Liệu",
+    desc: "Mọi cấu hình hệ thống đều dựa trên kết quả đo đạc phụ tải thực tế và mô phỏng bức xạ vệ tinh Meteonorm 20 năm, kiểm soát sai số sản lượng dưới 5%.",
+  },
+  {
+    number: "02",
+    badge: "WIND LOAD 2400PA | IP65",
+    title: "Thiết Kế Khả Thi & An Toàn",
+    desc: "Hồ sơ bản vẽ IFC tính toán kết cấu giàn khung chịu tải bão cấp 12, giải pháp chống thấm dột chuyên dụng và an toàn PCCC cho mái nhà xưởng.",
+  },
+  {
+    number: "03",
+    badge: "TIER-1 CO/CQ | GENUINE",
+    title: "Thiết Bị Chuẩn Tier-1",
+    desc: "100% Inverter, tấm quang năng và khối pin lưu trữ có đầy đủ chứng chỉ xuất xứ (CO) và chứng chỉ chất lượng (CQ), bảo hành trực tiếp tại Việt Nam.",
+  },
+  {
+    number: "04",
+    badge: "SLA RESPONSE | 24H ACTION",
+    title: "Hỗ Trợ Vận Hành Dài Hạn",
+    desc: "Kỹ sư chuyên ngành trực tiếp quản trị dự án, phản hồi kỹ thuật trong 2 giờ và có mặt xử lý sự cố hiện trường trong vòng 24–48 giờ.",
+  },
+];
+
+/* =========================================================================
+   5. DỮ LIỆU: DỰ ÁN TIÊU BIỂU LIÊN KẾT
+========================================================================= */
+const FEATURED_PROJECTS = [
+  {
+    title: "Nhà Máy Chế Tạo Cơ Khí Chính Xác – KCN Quế Võ",
+    badge: "C&I ZERO-EXPORT | 250 KWP",
+    location: "Bắc Ninh",
+    image:
+      "https://images.unsplash.com/photo-1509391365360-2e959784a276?w=1000&auto=format&fit=crop&q=80",
+    stat: "32.050 kWh/tháng",
+    link: "/projects",
+  },
+  {
+    title: "Biệt Thự Khu Đô Thị Starlake – Hà Nội",
+    badge: "RESIDENTIAL HYBRID | 12 KWP + 15 KWH BESS",
+    location: "Hà Nội",
+    image:
+      "https://images.unsplash.com/photo-1513694203232-719a280e022f?w=1000&auto=format&fit=crop&q=80",
+    stat: "Tự chủ điện 85%",
+    link: "/projects",
   },
 ];
 
 export function ServicesPage() {
-  const [formSubmitted, setFormSubmitted] = useState(false);
+  const [expandedServiceId, setExpandedServiceId] = useState<string>("srv-01");
 
-  const handleFormSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setFormSubmitted(true);
+  const toggleService = (id: string) => {
+    setExpandedServiceId((prev) => (prev === id ? "" : id));
   };
 
   return (
-    <div className="w-full bg-white text-neutral-900 font-sans">
+    <div className="w-full bg-white text-[#0B0F19] font-sans antialiased selection:bg-[#FF5722] selection:text-white">
       {/* ============================================================= */}
-      {/* 1. HERO BANNER: DỊCH VỤ KỸ THUẬT & TỔNG THẦU EPC             */}
+      {/* 1. HERO SECTION: INDUSTRIAL HIGH-TECH MINIMALISM              */}
       {/* ============================================================= */}
-      <section className="relative w-full bg-[#050e18] text-white py-20 lg:py-28 overflow-hidden">
-        {/* Nền ảnh công nghiệp & Lưới tọa độ */}
-        <div className="absolute inset-0 z-0">
-          <img
-            src="https://images.unsplash.com/photo-1509391365360-2e959784a276?w=1800&auto=format&fit=crop&q=80"
-            alt="Dịch vụ EPC Năng lượng mặt trời TD VIỆT NAM"
-            className="w-full h-full object-cover opacity-25"
-          />
-          <div
-            className="absolute inset-0 opacity-15"
-            style={{
-              backgroundImage:
-                "linear-gradient(#008a4b 1px, transparent 1px), linear-gradient(90deg, #008a4b 1px, transparent 1px)",
-              backgroundSize: "48px 48px",
-            }}
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#050e18] via-[#050e18]/90 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#050e18] via-transparent to-[#050e18]/80" />
-        </div>
+      <section className="relative w-full bg-[#0B0F19] text-white pt-16 pb-20 lg:pt-20 lg:pb-28 overflow-hidden border-b border-slate-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 relative z-10">
+          <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/5 border border-slate-700 text-[#00875A] text-xs font-bold uppercase tracking-wider rounded-full">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#00875A]" />
+            <span>DỊCH VỤ KỸ THUẬT &amp; TỔNG THẦU EPC</span>
+          </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl space-y-6">
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#F15A24]/10 border-l-2 border-[#F15A24] text-[#F15A24] text-xs font-mono font-bold uppercase tracking-wider">
-              <span>ENGINEERING &amp; EPC SERVICES</span>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+            {/* Cột trái: Tiêu đề lớn & Định vị */}
+            <div className="lg:col-span-7 space-y-6">
+              <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black uppercase text-white tracking-tight leading-[1.05]">
+                DỊCH VỤ
+              </h1>
+
+              <div className="space-y-3 text-neutral-300 font-normal leading-relaxed text-sm sm:text-base max-w-2xl">
+                <p className="text-white font-bold text-base sm:text-lg">
+                  Đồng hành cùng chủ đầu tư xuyên suốt vòng đời dự án năng lượng.
+                </p>
+                <p>
+                  Từ tư vấn, khảo sát mô phỏng và thiết kế tối ưu CAPEX đến triển khai tổng thầu EPC
+                  chuẩn an toàn và quản lý vận hành bền bỉ suốt 25 năm.
+                </p>
+              </div>
+
+              {/* Nút hành động bo tròn hoàn toàn (rounded-full) */}
+              <div className="pt-2 flex flex-wrap items-center gap-4">
+                <a
+                  href="/contact"
+                  className="inline-flex items-center gap-3 px-8 py-3.5 rounded-full bg-[#FF5722] hover:bg-[#e64a19] text-white text-xs font-bold uppercase tracking-wider transition-all hover:scale-105"
+                >
+                  <span>TRAO ĐỔI VỚI KỸ SƯ</span>
+                  <ArrowRight className="w-4 h-4" />
+                </a>
+
+                <a
+                  href="/projects"
+                  className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-transparent hover:bg-white/10 text-white text-xs font-bold uppercase tracking-wider border border-slate-700 transition-colors"
+                >
+                  <span>XEM DỰ ÁN</span>
+                </a>
+              </div>
             </div>
 
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black uppercase text-white leading-tight tracking-tight">
-              DỊCH VỤ KỸ THUẬT &amp; TỔNG THẦU EPC NĂNG LƯỢNG TÁI TẠO
-            </h1>
-
-            <p className="text-base sm:text-lg text-neutral-300 leading-relaxed font-normal">
-              Đồng hành cùng chủ đầu tư từ bước khảo sát mô phỏng, thiết kế tối ưu CAPEX đến thi
-              công chuẩn an toàn và vận hành bền bỉ suốt 25 năm.
-            </p>
-
-            <div className="pt-3 flex flex-wrap items-center gap-4">
-              <a
-                href="#survey-form"
-                className="inline-flex items-center gap-3 px-8 py-3.5 font-bold text-xs uppercase tracking-wider text-white bg-[#008A4B] hover:bg-[#00703C] transition-all shadow-lg shadow-[#008A4B]/20 hover:scale-105"
-              >
-                <div className="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center">
-                  <ArrowRight className="w-3 h-3 text-white" />
+            {/* Cột phải: Hình ảnh công trình kỹ thuật lớn */}
+            <div className="lg:col-span-5 space-y-3">
+              <div className="relative aspect-[4/3] bg-neutral-900 border border-slate-800 overflow-hidden">
+                <img
+                  src="https://images.unsplash.com/photo-1509391365360-2e959784a276?w=1200&auto=format&fit=crop&q=80"
+                  alt="Công trình kỹ thuật điện mặt trời áp mái TD VIỆT NAM"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute bottom-0 left-0 right-0 bg-[#0B0F19]/95 p-4 text-white border-t border-slate-800">
+                  <div className="text-[11px] font-bold text-[#FF5722] uppercase tracking-wide">
+                    TIÊU CHUẨN THI CÔNG EPC
+                  </div>
+                  <div className="text-xs font-bold text-white mt-0.5">
+                    Khảo sát mô phỏng • Thi công cơ điện • Nghiệm thu hòa lưới
+                  </div>
                 </div>
-                <span>YÊU CẦU KHẢO SÁT HIỆN TRƯỜNG</span>
-              </a>
+              </div>
 
-              <a
-                href="tel:0941994262"
-                className="inline-flex items-center gap-2 px-7 py-3.5 font-bold text-xs uppercase tracking-wider text-white bg-white/10 hover:bg-white/20 border border-white/20 backdrop-blur-sm transition-all"
-              >
-                <Phone className="w-3.5 h-3.5 text-[#008A4B]" />
-                <span>TƯ VẤN CÙNG KỸ SƯ: 0941 994 262</span>
-              </a>
+              <div className="flex items-center justify-between text-xs text-neutral-400 font-medium px-1">
+                <span>HẠ TẦNG ĐIỆN &amp; LƯU TRỮ BESS</span>
+                <span className="text-[#00875A] font-bold">TD VIỆT NAM</span>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* TICKER CHỈ SỐ KỸ THUẬT NHANH */}
-      <div className="w-full bg-[#f8fafc] border-b border-neutral-200/80 py-4">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-          <div className="space-y-0.5">
-            <div className="text-xl sm:text-2xl font-black font-mono text-[#008A4B]">&lt; 5%</div>
-            <div className="text-[11px] font-semibold text-neutral-600 uppercase">
-              Sai số mô phỏng PVsyst
-            </div>
-          </div>
-          <div className="space-y-0.5">
-            <div className="text-xl sm:text-2xl font-black font-mono text-[#F15A24]">
-              100% Tier-1
-            </div>
-            <div className="text-[11px] font-semibold text-neutral-600 uppercase">
-              Thiết bị có CO/CQ
-            </div>
-          </div>
-          <div className="space-y-0.5">
-            <div className="text-xl sm:text-2xl font-black font-mono text-neutral-900">
-              &lt; 10 Ω
-            </div>
-            <div className="text-[11px] font-semibold text-neutral-600 uppercase">
-              Điện trở tiếp địa an toàn
-            </div>
-          </div>
-          <div className="space-y-0.5">
-            <div className="text-xl sm:text-2xl font-black font-mono text-[#10B981]">02 Giờ</div>
-            <div className="text-[11px] font-semibold text-neutral-600 uppercase">
-              Phản hồi kỹ thuật SLA
-            </div>
-          </div>
+      {/* Breadcrumb Tối Giản */}
+      <div className="w-full bg-[#F8FAFC] border-b border-slate-200 py-3.5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-xs font-semibold text-neutral-500 flex items-center gap-2">
+          <a href="/" className="hover:text-[#0B0F19] transition-colors">
+            Trang chủ
+          </a>
+          <span>/</span>
+          <span className="text-[#00875A]">Dịch vụ kỹ thuật</span>
         </div>
       </div>
 
       {/* ============================================================= */}
-      {/* 2. KHỐI 1: TƯ VẤN & KỸ THUẬT DỰ ÁN                            */}
+      {/* 2. HAI NHÓM NĂNG LỰC CỐT LÕI (EDITORIAL ASYMMETRIC GRID)       */}
       {/* ============================================================= */}
-      <section
-        id="consulting"
-        className="w-full py-16 sm:py-24 bg-white border-b border-neutral-200"
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-neutral-200 pb-6">
-            <div className="space-y-1">
-              <span className="text-xs font-mono font-bold text-[#008A4B] uppercase tracking-wider">
-                ENGINEERING &amp; CONSULTING
-              </span>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black uppercase text-neutral-900 tracking-tight">
-                TƯ VẤN &amp; KỸ THUẬT DỰ ÁN
-              </h2>
-            </div>
-            <p className="text-xs text-neutral-500 max-w-md font-medium">
-              Thiết kế dựa trên dữ liệu đo đạc thực tế, chuẩn hóa bài toán tài chính và hồ sơ kỹ
-              thuật cho công trình.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {CONSULTING_SERVICES.map((item) => (
-              <div
-                key={item.id}
-                className="bg-white border border-neutral-200/90 hover:border-neutral-900 transition-all flex flex-col justify-between overflow-hidden shadow-xs hover:shadow-md group"
-              >
-                <div>
-                  <div className="relative aspect-[16/10] bg-neutral-100 overflow-hidden">
-                    <img
-                      src={item.image}
-                      alt={item.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                    <div className="absolute top-3 left-3 bg-[#050e18]/80 backdrop-blur-xs text-white px-2.5 py-1 text-[11px] font-mono font-bold">
-                      {item.stepNumber}
-                    </div>
-                  </div>
-
-                  <div className="p-6 space-y-4">
-                    <div className="text-[10px] font-mono font-bold text-[#008A4B] uppercase">
-                      {item.tag}
-                    </div>
-
-                    <h3 className="text-lg font-black text-neutral-900 uppercase leading-snug">
-                      {item.title}
-                    </h3>
-
-                    <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed font-normal">
-                      {item.description}
-                    </p>
-
-                    <div className="pt-2 border-t border-neutral-100 space-y-2.5">
-                      {item.features.map((feat, fIdx) => (
-                        <div key={fIdx} className="flex items-start gap-2 text-xs text-neutral-700">
-                          <Check className="w-3.5 h-3.5 text-[#008A4B] mt-0.5 flex-shrink-0" />
-                          <span className="leading-tight">{feat}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                <div className="p-6 pt-0">
-                  <a
-                    href="#survey-form"
-                    className="w-full inline-flex items-center justify-center gap-2 py-2.5 bg-neutral-100 hover:bg-[#008A4B] hover:text-white text-neutral-900 text-xs font-bold uppercase tracking-wider transition-colors"
-                  >
-                    <span>Yêu cầu tư vấn</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </a>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ============================================================= */}
-      {/* 3. KHỐI 2: TRIỂN KHAI & VẬN HÀNH                              */}
-      {/* ============================================================= */}
-      <section
-        id="execution"
-        className="w-full py-16 sm:py-24 bg-neutral-50/70 border-b border-neutral-200"
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-neutral-200 pb-6">
-            <div className="space-y-1">
-              <span className="text-xs font-mono font-bold text-[#F15A24] uppercase tracking-wider">
-                PROCUREMENT, CONSTRUCTION &amp; O&amp;M
-              </span>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black uppercase text-neutral-900 tracking-tight">
-                TRIỂN KHAI &amp; VẬN HÀNH
-              </h2>
-            </div>
-            <p className="text-xs text-neutral-500 max-w-md font-medium">
-              Thi công chuẩn kỹ thuật công nghiệp, kiểm soát thiết bị Tier-1 và đồng hành suốt vòng
-              đời 25 năm.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {EXECUTION_SERVICES.map((item) => (
-              <div
-                key={item.id}
-                className="bg-white border border-neutral-200/90 hover:border-neutral-900 transition-all flex flex-col lg:flex-row overflow-hidden shadow-xs hover:shadow-md group"
-              >
-                <div className="lg:w-2/5 relative aspect-square lg:aspect-auto bg-neutral-100 overflow-hidden flex-shrink-0">
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent lg:hidden" />
-                </div>
-
-                <div className="lg:w-3/5 p-6 sm:p-7 flex flex-col justify-between space-y-4">
-                  <div className="space-y-3">
-                    <div className="text-[10px] font-mono font-bold text-[#F15A24] uppercase">
-                      {item.tag}
-                    </div>
-
-                    <h3 className="text-base sm:text-lg font-black text-neutral-900 uppercase leading-snug">
-                      {item.title}
-                    </h3>
-
-                    <p className="text-xs text-neutral-600 leading-relaxed font-normal">
-                      {item.summary}
-                    </p>
-
-                    <div className="pt-2 border-t border-neutral-100 space-y-2">
-                      {item.highlights.map((point, pIdx) => (
-                        <div key={pIdx} className="flex items-start gap-2 text-xs text-neutral-700">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-[#F15A24] mt-0.5 flex-shrink-0" />
-                          <span className="leading-tight">{point}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="pt-3 border-t border-neutral-100 flex items-center justify-between">
-                    <a
-                      href="#survey-form"
-                      className="inline-flex items-center gap-1.5 text-xs font-bold text-[#008A4B] hover:text-[#00703C] uppercase tracking-wider group-hover:translate-x-1 transition-all"
-                    >
-                      <span>Khảo sát giải pháp này</span>
-                      <ChevronRight className="w-3.5 h-3.5" />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ============================================================= */}
-      {/* 4. CAM KẾT CHẤT LƯỢNG DỊCH VỤ CỦA TD VIỆT NAM                  */}
-      {/* ============================================================= */}
-      <section className="w-full py-16 sm:py-24 bg-[#050e18] text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-          <div className="text-center max-w-3xl mx-auto space-y-3">
-            <span className="text-xs font-mono font-bold text-[#10B981] uppercase tracking-wider">
-              SERVICE LEVEL AGREEMENT &amp; COMMITMENTS
+      <section className="w-full py-16 sm:py-24 bg-white border-b border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+          <div className="max-w-3xl space-y-3">
+            <span className="text-xs font-bold text-[#00875A] uppercase tracking-wider">
+              HAI KHỐI NĂNG LỰC CỐT LÕI
             </span>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black uppercase text-white tracking-tight">
-              CAM KẾT CHẤT LƯỢNG DỊCH VỤ CỦA TD VIỆT NAM
+            <h2 className="text-2xl sm:text-4xl font-black uppercase text-[#0B0F19] tracking-tight leading-tight">
+              Giải Pháp Kỹ Thuật Đồng Bộ Từ Ý Niệm Đến Vận Hành
             </h2>
-            <p className="text-xs sm:text-sm text-neutral-400">
-              Minh bạch từng chỉ số kỹ thuật và trách nhiệm bảo hành nhằm bảo vệ tối đa quyền lợi
-              của chủ đầu tư.
+            <p className="text-xs sm:text-sm text-neutral-600 font-normal leading-relaxed">
+              Thay vì cung cấp dịch vụ phân mảnh, TD VIỆT NAM tổ chức chuỗi công việc thành hai khối
+              năng lực rõ ràng nhằm đảm bảo tính đồng bộ tuyệt đối cho công trình.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {COMMITMENTS.map((com, cIdx) => {
-              const IconComp = com.icon;
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12">
+            {CAPABILITY_GROUPS.map((group, gIdx) => (
+              <div
+                key={gIdx}
+                className={`bg-[#F8FAFC] border border-slate-200 ${group.borderAccent} p-8 sm:p-10 space-y-6 flex flex-col justify-between hover:border-slate-400 transition-all relative group`}
+              >
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <span className="text-4xl sm:text-5xl font-black text-slate-300 group-hover:text-[#0B0F19] transition-colors">
+                      {group.number}
+                    </span>
+                    <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider bg-white px-2.5 py-1 border border-slate-200 rounded-full">
+                      {group.badge}
+                    </span>
+                  </div>
+
+                  <h3 className="text-xl sm:text-2xl font-black uppercase text-[#0B0F19] leading-snug">
+                    {group.title}
+                  </h3>
+
+                  <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed font-normal">
+                    {group.desc}
+                  </p>
+
+                  <div className="pt-4 border-t border-slate-200 space-y-2.5">
+                    <div className="text-xs font-bold text-slate-500 uppercase tracking-wide">
+                      DANH MỤC DỊCH VỤ THỰC THI:
+                    </div>
+                    {group.services.map((srv, sIdx) => (
+                      <div
+                        key={sIdx}
+                        className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-800 font-medium"
+                      >
+                        <Check className="w-4 h-4 text-[#00875A] mt-0.5 flex-shrink-0" />
+                        <span className="leading-snug">{srv}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="pt-4 border-t border-slate-200 flex items-center justify-between">
+                  <a
+                    href="#all-services-accordion"
+                    className="inline-flex items-center gap-2 text-xs font-bold text-[#00875A] hover:text-[#00703C] uppercase tracking-wider"
+                  >
+                    <span>Xem chi tiết các hạng mục</span>
+                    <ChevronRight className="w-3.5 h-3.5" />
+                  </a>
+
+                  {/* Icon tròn nhỏ màu cam ở góc dưới chứa mũi tên ↗ */}
+                  <div className="w-8 h-8 rounded-full bg-[#FF5722] text-white flex items-center justify-center transition-transform group-hover:scale-110">
+                    <ArrowUpRight className="w-4 h-4" />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================================= */}
+      {/* 3. CHI TIẾT 7 DỊCH VỤ (ACCORDION WITH BORDER-L-4 & BADGES)     */}
+      {/* ============================================================= */}
+      <section
+        id="all-services-accordion"
+        className="w-full py-16 sm:py-24 bg-[#F8FAFC] border-b border-slate-200"
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-slate-200 pb-6">
+            <div className="space-y-1">
+              <span className="text-xs font-bold text-[#FF5722] uppercase tracking-wider">
+                CHI TIẾT DỊCH VỤ KỸ THUẬT
+              </span>
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black uppercase text-[#0B0F19] tracking-tight">
+                7 Dịch Vụ Kỹ Thuật Chuyên Sâu
+              </h2>
+            </div>
+            <p className="text-xs text-neutral-500 font-semibold uppercase max-w-md">
+              BẤM VÀO TỪNG DỊCH VỤ ĐỂ XEM CHI TIẾT PHẠM VI &amp; HỒ SƠ BÀN GIAO
+            </p>
+          </div>
+
+          {/* Danh sách Accordion */}
+          <div className="space-y-4">
+            {ALL_SERVICES_LIST.map((srv) => {
+              const isExpanded = expandedServiceId === srv.id;
               return (
                 <div
-                  key={cIdx}
-                  className="bg-neutral-950 p-6 sm:p-7 border border-neutral-800 hover:border-[#008A4B] transition-all space-y-4 flex flex-col justify-between"
+                  key={srv.id}
+                  className={`bg-white border border-slate-200 ${srv.borderAccent} transition-all duration-200 overflow-hidden ${
+                    isExpanded ? "ring-1 ring-[#0B0F19]" : "hover:border-slate-400"
+                  }`}
                 >
-                  <div className="space-y-3">
-                    <div className="flex items-center justify-between">
-                      <div className="w-10 h-10 bg-[#008A4B]/20 text-[#10B981] flex items-center justify-center">
-                        <IconComp className="w-5 h-5" />
-                      </div>
-                      <span className="text-[10px] font-mono font-bold text-neutral-400 bg-neutral-900 px-2 py-0.5">
-                        {com.badge}
+                  {/* Dòng tiêu đề Accordion */}
+                  <div
+                    onClick={() => toggleService(srv.id)}
+                    className="p-6 sm:p-8 cursor-pointer flex flex-col md:flex-row md:items-center justify-between gap-4 select-none"
+                  >
+                    <div className="flex items-start md:items-center gap-4 sm:gap-6 flex-1">
+                      <span
+                        className={`text-xl sm:text-2xl font-black ${
+                          isExpanded ? "text-[#FF5722]" : "text-slate-400"
+                        }`}
+                      >
+                        {srv.number}
                       </span>
+
+                      <div className="space-y-1">
+                        <div className="inline-flex items-center gap-2 text-[10px] font-bold text-slate-500 uppercase tracking-wider">
+                          <span>{srv.badge}</span>
+                        </div>
+                        <h3 className="text-lg sm:text-xl font-black uppercase text-[#0B0F19] leading-snug">
+                          {srv.title}
+                        </h3>
+                        <p className="text-xs sm:text-sm text-neutral-600 font-normal leading-relaxed">
+                          {srv.summary}
+                        </p>
+                      </div>
                     </div>
 
-                    <h3 className="text-sm sm:text-base font-bold text-white uppercase">
-                      {com.criterion}
-                    </h3>
-
-                    <p className="text-xs text-neutral-300 leading-relaxed font-normal">
-                      {com.commitment}
-                    </p>
+                    <div className="flex items-center gap-3 flex-shrink-0 pt-2 md:pt-0">
+                      <span className="text-xs font-bold text-[#00875A] uppercase tracking-wider hidden sm:inline">
+                        {isExpanded ? "Thu gọn" : "Xem chi tiết"}
+                      </span>
+                      <div
+                        className={`w-8 h-8 rounded-full flex items-center justify-center transition-all ${
+                          isExpanded
+                            ? "bg-[#FF5722] text-white rotate-180"
+                            : "bg-slate-100 text-slate-600 border border-slate-200"
+                        }`}
+                      >
+                        <ChevronDown className="w-4 h-4" />
+                      </div>
+                    </div>
                   </div>
 
-                  <div className="pt-3 border-t border-neutral-800 text-[10px] font-mono text-[#008A4B]">
-                    TIÊU CHUẨN TD VIỆT NAM
-                  </div>
+                  {/* Nội dung chi tiết mở rộng */}
+                  {isExpanded && (
+                    <div className="px-6 sm:px-8 pb-8 pt-2 border-t border-slate-100 animate-in fade-in duration-200">
+                      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start pt-4">
+                        {/* Cột trái: Phạm vi công việc */}
+                        <div className="lg:col-span-7 space-y-4">
+                          <div className="text-xs font-bold text-slate-900 uppercase tracking-wide">
+                            PHẠM VI CÔNG VIỆC THỰC HIỆN:
+                          </div>
+                          <div className="space-y-2.5">
+                            {srv.scope.map((item, idx) => (
+                              <div
+                                key={idx}
+                                className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700"
+                              >
+                                <CheckCircle2 className="w-4 h-4 text-[#00875A] mt-0.5 flex-shrink-0" />
+                                <span className="leading-snug font-normal">{item}</span>
+                              </div>
+                            ))}
+                          </div>
+
+                          <div className="pt-4 border-t border-slate-100 space-y-2">
+                            <div className="text-xs font-bold text-slate-900 uppercase tracking-wide">
+                              HỒ SƠ BÀN GIAO CHO KHÁCH HÀNG:
+                            </div>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                              {srv.deliverables.map((del, dIdx) => (
+                                <div
+                                  key={dIdx}
+                                  className="p-2.5 bg-[#F8FAFC] border border-slate-200 font-medium text-slate-800 flex items-center gap-2"
+                                >
+                                  <FileText className="w-3.5 h-3.5 text-[#FF5722] flex-shrink-0" />
+                                  <span>{del}</span>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Cột phải: Hình ảnh & Nút liên hệ */}
+                        <div className="lg:col-span-5 space-y-4">
+                          <div className="relative aspect-[16/10] bg-neutral-100 border border-slate-200 overflow-hidden">
+                            <img
+                              src={srv.image}
+                              alt={srv.title}
+                              className="w-full h-full object-cover"
+                            />
+                          </div>
+
+                          <div className="flex items-center justify-between pt-2">
+                            <a
+                              href="/contact"
+                              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#FF5722] hover:bg-[#e64a19] text-white text-xs font-bold uppercase tracking-wider transition-colors"
+                            >
+                              <span>Yêu cầu tư vấn</span>
+                              <ArrowRight className="w-3.5 h-3.5" />
+                            </a>
+
+                            <a
+                              href="/projects"
+                              className="text-xs font-bold text-slate-600 hover:text-[#0B0F19] uppercase tracking-wide underline"
+                            >
+                              Xem công trình mẫu
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </div>
               );
             })}
@@ -505,142 +664,259 @@ export function ServicesPage() {
       </section>
 
       {/* ============================================================= */}
-      {/* 5. FORM ĐĂNG KÝ KHẢO SÁT & TIẾP NHẬN DỰ ÁN                    */}
+      {/* 4. QUY TRÌNH TRIỂN KHAI XUYÊN SUỐT (6 BƯỚC)                   */}
       {/* ============================================================= */}
-      <section id="survey-form" className="w-full py-16 sm:py-24 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-          <div className="text-center space-y-3">
-            <span className="text-xs font-mono font-bold text-[#008A4B] uppercase tracking-wider">
-              ON-SITE SURVEY REQUEST
-            </span>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black uppercase text-neutral-900 tracking-tight">
-              ĐĂNG KÝ KHẢO SÁT HIỆN TRƯỜNG MIỄN PHÍ
-            </h2>
-            <p className="text-xs sm:text-sm text-neutral-600 max-w-xl mx-auto">
-              Để lại thông tin công trình, đội ngũ kỹ sư của TD VIỆT NAM sẽ liên hệ, phân tích sơ bộ
-              biểu đồ phụ tải và xếp lịch đo đạc hiện trường trong vòng 24 giờ.
+      <section className="w-full py-16 sm:py-24 bg-white border-b border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-slate-200 pb-6">
+            <div className="space-y-1">
+              <span className="text-xs font-bold text-[#00875A] uppercase tracking-wider">
+                QUY TRÌNH DỰ ÁN
+              </span>
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black uppercase text-[#0B0F19] tracking-tight">
+                Quy Trình Triển Khai Xuyên Suốt
+              </h2>
+            </div>
+            <p className="text-xs text-neutral-500 font-semibold uppercase">
+              TỐI GIẢN HÓA THAO TÁC • CHUẨN HÓA CHẤT LƯỢNG KỸ THUẬT
             </p>
           </div>
 
-          {formSubmitted ? (
-            <div className="bg-neutral-50 border-2 border-[#008A4B] p-8 text-center space-y-4 animate-in fade-in duration-300">
-              <div className="w-14 h-14 bg-[#008A4B]/10 text-[#008A4B] mx-auto flex items-center justify-center rounded-full">
-                <CheckCircle2 className="w-8 h-8" />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6">
+            {WORKFLOW_STEPS.map((step, idx) => (
+              <div
+                key={idx}
+                className="bg-[#F8FAFC] border border-slate-200 border-l-4 border-l-[#00875A] p-5 space-y-3 flex flex-col justify-between hover:border-slate-400 transition-colors"
+              >
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between">
+                    <span className="text-2xl font-black text-[#00875A]">{step.step}</span>
+                    <span className="text-[9px] font-bold text-slate-500 uppercase tracking-wider bg-white px-2 py-0.5 border border-slate-200 rounded-full">
+                      BƯỚC {idx + 1}
+                    </span>
+                  </div>
+
+                  <h3 className="text-sm font-bold uppercase text-[#0B0F19] leading-snug">
+                    {step.title}
+                  </h3>
+
+                  <p className="text-xs text-neutral-600 leading-relaxed font-normal">
+                    {step.desc}
+                  </p>
+                </div>
               </div>
-              <h3 className="text-xl font-bold text-neutral-900">
-                Yêu cầu khảo sát đã được tiếp nhận!
-              </h3>
-              <p className="text-sm text-neutral-600 max-w-md mx-auto">
-                Kỹ sư phụ trách khu vực của TD VIỆT NAM sẽ liên hệ qua số điện thoại để trao đổi chi
-                tiết về mặt bằng và thời gian khảo sát.
-              </p>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================================= */}
+      {/* 5. GIÁ TRỊ KỸ THUẬT & KHỐI TRÍCH DẪN KỸ SƯ TRƯỞNG (QUOTE BOX) */}
+      {/* ============================================================= */}
+      <section className="w-full py-16 sm:py-24 bg-[#F8FAFC] border-b border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+          <div className="max-w-3xl space-y-3">
+            <span className="text-xs font-bold text-[#00875A] uppercase tracking-wider">
+              GIÁ TRỊ KỸ THUẬT THỰC CHẤT
+            </span>
+            <h2 className="text-2xl sm:text-4xl font-black uppercase text-[#0B0F19] tracking-tight leading-tight">
+              Những Cam Kết Có Thể Chứng Minh Bằng Số Liệu
+            </h2>
+            <p className="text-xs sm:text-sm text-neutral-600 font-normal">
+              Chúng tôi không sử dụng các tuyên bố chung chung mà đo lường chất lượng dịch vụ bằng
+              độ chính xác của mô phỏng và sự an toàn của công trình.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {ENGINEERING_VALUES.map((val, idx) => (
+              <div
+                key={idx}
+                className="bg-white border border-slate-200 p-6 sm:p-7 space-y-4 hover:border-slate-400 transition-all flex flex-col justify-between relative group"
+              >
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <span className="text-3xl sm:text-4xl font-black text-slate-300 group-hover:text-[#0B0F19] transition-colors">
+                      {val.number}
+                    </span>
+                    <span className="text-[9px] font-bold text-slate-500 uppercase tracking-wider bg-slate-50 px-2 py-0.5 border border-slate-200 rounded-full">
+                      {val.badge}
+                    </span>
+                  </div>
+
+                  <h3 className="text-base font-black uppercase text-[#0B0F19]">{val.title}</h3>
+                  <p className="text-xs text-neutral-600 leading-relaxed font-normal">{val.desc}</p>
+                </div>
+
+                <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-[#00875A] uppercase">
+                  <span>TIÊU CHUẨN THỰC THI</span>
+                  <div className="w-6 h-6 rounded-full bg-[#FF5722] text-white flex items-center justify-center text-[10px]">
+                    <ArrowUpRight className="w-3.5 h-3.5" />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* KHỐI TRÍCH DẪN (QUOTE BOX) KỸ SƯ TRƯỞNG */}
+          <div className="bg-[#0B0F19] text-white p-8 sm:p-12 border border-slate-800 relative overflow-hidden">
+            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+              <div className="lg:col-span-8 space-y-4">
+                <span className="text-5xl font-serif text-[#FF5722] leading-none block">“</span>
+                <blockquote className="text-lg sm:text-2xl font-bold uppercase text-white tracking-tight leading-snug">
+                  Tại TD VIỆT NAM, chúng tôi không đánh đổi an toàn và độ chính xác kỹ thuật lấy
+                  tiến độ nhất thời. Mỗi điểm đấu nối, mỗi chuỗi string đều phải chịu trách nhiệm
+                  trước 25 năm vận hành của công trình.
+                </blockquote>
+                <div className="pt-2 text-xs text-slate-400 font-medium">
+                  NGUYÊN TẮC THIẾT KẾ &amp; THI CÔNG HỆ THỐNG ĐIỆN CÔNG NGHIỆP
+                </div>
+              </div>
+
+              <div className="lg:col-span-4 flex items-center gap-4 lg:border-l lg:border-slate-800 lg:pl-8">
+                <div className="w-14 h-14 rounded-full bg-[#FF5722]/20 border border-[#FF5722] flex items-center justify-center text-[#FF5722] font-black text-lg flex-shrink-0">
+                  TD
+                </div>
+                <div>
+                  <div className="text-sm font-bold text-white uppercase">
+                    KỸ SƯ TRƯỞNG HỆ THỐNG ĐIỆN
+                  </div>
+                  <div className="text-xs text-[#00875A] font-medium">
+                    CÔNG TY TNHH PHÁT TRIỂN NĂNG LƯỢNG TD VIỆT NAM
+                  </div>
+                  <div className="text-[11px] text-slate-400">
+                    Chuyên ngành Hệ Thống Điện &amp; Năng Lượng Tái Tạo
+                  </div>
+                </div>
+              </div>
             </div>
-          ) : (
-            <form
-              onSubmit={handleFormSubmit}
-              className="bg-neutral-50 p-6 sm:p-10 border border-neutral-200 space-y-6"
-            >
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label className="block text-xs font-bold uppercase tracking-wider text-neutral-800">
-                    Họ và tên người liên hệ <span className="text-[#F15A24]">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    placeholder="Ví dụ: Nguyễn Văn Nam"
-                    className="w-full px-4 py-3 bg-white border border-neutral-300 text-neutral-900 text-sm focus:outline-none focus:border-[#008A4B] transition-colors"
-                  />
-                </div>
+          </div>
+        </div>
+      </section>
 
-                <div className="space-y-2">
-                  <label className="block text-xs font-bold uppercase tracking-wider text-neutral-800">
-                    Số điện thoại liên hệ <span className="text-[#F15A24]">*</span>
-                  </label>
-                  <input
-                    type="tel"
-                    required
-                    placeholder="Ví dụ: 0941 994 262"
-                    className="w-full px-4 py-3 bg-white border border-neutral-300 text-neutral-900 text-sm focus:outline-none focus:border-[#008A4B] transition-colors"
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <label className="block text-xs font-bold uppercase tracking-wider text-neutral-800">
-                    Loại hình công trình <span className="text-[#F15A24]">*</span>
-                  </label>
-                  <select
-                    required
-                    className="w-full px-4 py-3 bg-white border border-neutral-300 text-neutral-900 text-sm focus:outline-none focus:border-[#008A4B] transition-colors"
-                  >
-                    <option value="">-- Chọn loại hình --</option>
-                    <option value="factory">Nhà xưởng sản xuất / Doanh nghiệp FDI (C&amp;I)</option>
-                    <option value="residential">Biệt thự / Nhà ở gia đình</option>
-                    <option value="farm">Trang trại / Nông nghiệp công nghệ cao</option>
-                    <option value="bess">Hệ thống lưu trữ pin BESS / Hybrid</option>
-                    <option value="om">Dịch vụ bảo trì O&amp;M định kỳ</option>
-                  </select>
-                </div>
-
-                <div className="space-y-2">
-                  <label className="block text-xs font-bold uppercase tracking-wider text-neutral-800">
-                    Hóa đơn tiền điện bình quân / tháng
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="Ví dụ: 50 triệu / tháng hoặc 200 triệu / tháng"
-                    className="w-full px-4 py-3 bg-white border border-neutral-300 text-neutral-900 text-sm focus:outline-none focus:border-[#008A4B] transition-colors"
-                  />
-                </div>
-              </div>
-
-              <div className="space-y-2">
-                <label className="block text-xs font-bold uppercase tracking-wider text-neutral-800">
-                  Địa chỉ công trình &amp; Tỉnh thành <span className="text-[#F15A24]">*</span>
-                </label>
-                <input
-                  type="text"
-                  required
-                  placeholder="Ví dụ: KCN Quế Võ, Bắc Ninh hoặc KCN Phố Nối A, Hưng Yên"
-                  className="w-full px-4 py-3 bg-white border border-neutral-300 text-neutral-900 text-sm focus:outline-none focus:border-[#008A4B] transition-colors"
-                />
-              </div>
-
-              <div className="space-y-2">
-                <label className="block text-xs font-bold uppercase tracking-wider text-neutral-800">
-                  Nhu cầu cụ thể &amp; Ghi chú kỹ thuật
-                </label>
-                <textarea
-                  rows={3}
-                  placeholder="Ví dụ: Mái tôn diện tích 2000m2, trạm biến áp riêng 560kVA, cần lắp hệ thống bám tải Zero-Export..."
-                  className="w-full px-4 py-3 bg-white border border-neutral-300 text-neutral-900 text-sm focus:outline-none focus:border-[#008A4B] transition-colors resize-none"
-                />
-              </div>
-
-              <div className="pt-2 text-center">
-                <button
-                  type="submit"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-10 py-3.5 bg-[#008A4B] hover:bg-[#00703C] text-white font-bold text-xs uppercase tracking-wider transition-all shadow-md shadow-[#008A4B]/20 cursor-pointer"
-                >
-                  <Send className="w-4 h-4" />
-                  <span>GỬI YÊU CẦU KHẢO SÁT KỸ THUẬT</span>
-                </button>
-              </div>
-            </form>
-          )}
-
-          <div className="pt-4 text-center text-xs text-neutral-500">
-            Hỗ trợ tư vấn kỹ thuật trực tiếp:{" "}
-            <a href="tel:0941994262" className="text-[#008A4B] font-bold">
-              0941 994 262
-            </a>{" "}
-            | Email tiếp nhận hồ sơ:{" "}
+      {/* ============================================================= */}
+      {/* 6. DỰ ÁN TIÊU BIỂU (LIÊN KẾT THỰC TẾ)                         */}
+      {/* ============================================================= */}
+      <section className="w-full py-16 sm:py-24 bg-white border-b border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-slate-200 pb-6">
+            <div className="space-y-1">
+              <span className="text-xs font-bold text-[#FF5722] uppercase tracking-wider">
+                CHỨNG THỰC HIỆN TRƯỜNG
+              </span>
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black uppercase text-[#0B0F19] tracking-tight">
+                Công Trình Thực Tế Đã Đóng Điện
+              </h2>
+            </div>
             <a
-              href="mailto:contact@tdvietnam.com.vn"
-              className="text-neutral-900 font-bold underline"
+              href="/projects"
+              className="inline-flex items-center gap-1.5 text-xs font-bold text-[#00875A] hover:text-[#00703C] uppercase tracking-wider"
             >
-              contact@tdvietnam.com.vn
+              <span>Xem toàn bộ dự án</span>
+              <ChevronRight className="w-3.5 h-3.5" />
             </a>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {FEATURED_PROJECTS.map((pj, idx) => (
+              <a
+                key={idx}
+                href={pj.link}
+                className="group bg-[#F8FAFC] border border-slate-200 overflow-hidden hover:border-slate-400 transition-all flex flex-col justify-between relative"
+              >
+                <div>
+                  <div className="relative aspect-[16/10] bg-neutral-100 overflow-hidden border-b border-slate-200">
+                    <img
+                      src={pj.image}
+                      alt={pj.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute top-3 left-3 bg-[#0B0F19] text-white px-2.5 py-1 text-xs font-bold">
+                      {pj.location}
+                    </div>
+                  </div>
+
+                  <div className="p-6 sm:p-8 space-y-3">
+                    <div className="text-[11px] font-bold text-[#00875A] uppercase tracking-wide">
+                      {pj.badge}
+                    </div>
+
+                    <h3 className="text-lg sm:text-xl font-black uppercase text-[#0B0F19] leading-snug group-hover:text-[#FF5722] transition-colors">
+                      {pj.title}
+                    </h3>
+                  </div>
+                </div>
+
+                <div className="p-6 sm:p-8 pt-0 border-t border-slate-200 flex items-center justify-between">
+                  <span className="text-xs text-slate-500 font-medium">
+                    Sản lượng kiểm chứng: <strong className="text-[#0B0F19]">{pj.stat}</strong>
+                  </span>
+
+                  {/* Icon tròn nhỏ màu cam ↗ */}
+                  <div className="w-8 h-8 rounded-full bg-[#FF5722] text-white flex items-center justify-center transition-transform group-hover:scale-110">
+                    <ArrowUpRight className="w-4 h-4" />
+                  </div>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================================= */}
+      {/* 7. FINAL CTA: TỐI GIẢN & SOLID CAM BUTTON                    */}
+      {/* ============================================================= */}
+      <section className="w-full py-16 sm:py-24 bg-[#0B0F19] text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-neutral-950 p-8 sm:p-12 lg:p-16 border border-slate-800 flex flex-col lg:flex-row lg:items-center justify-between gap-8">
+            <div className="space-y-4 max-w-2xl">
+              <div className="inline-flex items-center gap-2 text-xs font-bold text-[#00875A] uppercase tracking-wider">
+                <Zap className="w-3.5 h-3.5" />
+                <span>KẾT NỐI KỸ THUẬT</span>
+              </div>
+
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black uppercase text-white tracking-tight leading-tight">
+                Bạn đang có một bài toán về hệ thống điện?
+              </h2>
+
+              <p className="text-xs sm:text-sm text-neutral-300 leading-relaxed font-normal">
+                Hãy bắt đầu từ nhu cầu sử dụng điện thực tế. Đội ngũ kỹ sư TD VIỆT NAM sẵn sàng lắng
+                nghe, phân tích phụ tải và lập phương án sơ bộ cho công trình của bạn.
+              </p>
+
+              <div className="flex flex-col sm:flex-row sm:items-center gap-4 text-xs font-medium text-neutral-300 pt-2">
+                <div className="flex items-center gap-2">
+                  <Phone className="w-4 h-4 text-[#00875A]" />
+                  <span>
+                    Hotline Kỹ Sư: <strong className="text-white font-bold">0941 994 262</strong>
+                  </span>
+                </div>
+                <span className="hidden sm:inline text-neutral-700">|</span>
+                <div className="flex items-center gap-2">
+                  <Mail className="w-4 h-4 text-[#FF5722]" />
+                  <span>
+                    Email: <strong className="text-white font-bold">nangluongtd@gmail.com</strong>
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex flex-col sm:flex-row lg:flex-col gap-3 flex-shrink-0">
+              <a
+                href="/contact"
+                className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-[#FF5722] hover:bg-[#e64a19] text-white font-bold text-xs uppercase tracking-wider transition-all hover:scale-105"
+              >
+                <span>TRAO ĐỔI VỚI KỸ SƯ</span>
+                <ArrowRight className="w-4 h-4" />
+              </a>
+
+              <a
+                href="/downloads"
+                className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-transparent hover:bg-white/10 text-white font-bold text-xs uppercase tracking-wider border border-slate-700 transition-colors"
+              >
+                <span>TẢI TÀI LIỆU DỰ ÁN</span>
+              </a>
+            </div>
           </div>
         </div>
       </section>
